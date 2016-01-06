@@ -10,5 +10,11 @@
     "graphql"
   ],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.3",
+    "express-graphql": "^0.4.5",
+    "graphql": "^0.4.14",
+    "isomorphic-fetch": "^2.2.0"
+  }
 }
