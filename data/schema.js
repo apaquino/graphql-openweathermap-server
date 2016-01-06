@@ -10,7 +10,6 @@ import {
   GraphQLFloat
 } from 'graphql';
 
-import YTSearch from 'youtube-api-search';
 import axios from 'axios';
 import API_KEYS from "../KEYS/index";
 
