@@ -13,5 +13,5 @@ app.use("/GraphQL", GraphQLHTTP({
 );
 
 app.listen(PORT, () => {
-  console.log("Node/Express server for Flux/GraphQL app.  listening on port", PORT);
+  console.log("Node/Express server for GraphQL server for youtube and weather searches.  listening on port", PORT);
 });
