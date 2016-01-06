@@ -113,7 +113,7 @@ const query = new GraphQLObjectType({
         return axios.get(url)
                 .then(function(response) {
                   return response.data;
-                });
+               });
       }
     }
   }),
