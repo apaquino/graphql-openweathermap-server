@@ -32,6 +32,13 @@ const API_KEYS = {
 export default API_KEYS;
 ```
 
+To start the server, run this command:
+
+
+```
+npm start
+```
+
 Open your browser and go to http://localhost:8888/graphql
 
 Review the Docs in the upper right hand corner to view more about the fields available.
