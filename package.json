@@ -1,0 +1,14 @@
+{
+  "name": "graphql-youtube-weather",
+  "version": "1.0.0",
+  "description": "GraphQL server for youtube and weather",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "graphql"
+  ],
+  "author": "",
+  "license": "ISC"
+}
