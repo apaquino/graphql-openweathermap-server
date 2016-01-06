@@ -16,6 +16,22 @@ Install all the other dependencies.
 npm install
 ```
 
+## IMPORTANT
+
+You need to provide your own OpenWeatherMAP API key to have this work.
+
+create a directory at the root level and an index.js file.
+
+Here is a sample file in the /KEYS directory:
+
+```
+const API_KEYS = {
+  weather: "YOUR KEY HERE"
+};
+
+export default API_KEYS;
+```
+
 Open your browser and go to http://localhost:8888/graphql
 
 Review the Docs in the upper right hand corner to view more about the fields available.
