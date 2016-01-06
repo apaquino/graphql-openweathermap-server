@@ -20,7 +20,7 @@ npm install
 
 You need to provide your own OpenWeatherMAP API key to have this work.
 
-create a directory at the root level and an index.js file.
+create a "KEYS" directory at the root level and an index.js file.
 
 Here is a sample file in the /KEYS directory:
 
