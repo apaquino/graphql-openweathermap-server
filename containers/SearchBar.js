@@ -27,7 +27,7 @@ class SearchBar extends Component {
           onChange={(e) => this.setState({term: e.target.value})}
         />
         <span className="input-group-btn">
-          <button type="submit" className="btn btn-secondary">
+          <button type="submit" className="btn btn-primary">
             {this.props.isLoading ? "Searching ..." : "Search" }
           </button>
         </span>

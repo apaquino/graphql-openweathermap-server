@@ -22354,7 +22354,7 @@
 	          { className: 'input-group-btn' },
 	          _react2.default.createElement(
 	            'button',
-	            { type: 'submit', className: 'btn btn-secondary' },
+	            { type: 'submit', className: 'btn btn-primary' },
 	            this.props.isLoading ? "Searching ..." : "Search"
 	          )
 	        )
