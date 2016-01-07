@@ -21137,7 +21137,7 @@
 	  return function (dispatch) {
 	    dispatch(requestWeather(term));
 	    return _axios2.default.post('/graphql', {
-	      query: '\n              {\n                weatherForecast(city:"' + term + '") {\n                  city {\n                    id,\n                    name,\n                    coord{\n                      lat,\n                      lng: lon\n                    }\n                  },\n                  list {\n                    main {\n                      temp,\n                      pressure,\n                      humidity\n                    }\n                  }\n                }\n              }\n              '
+	      query: '\n              {\n                weatherForecast(city:"' + term + '") {\n                  city {\n                    id,\n                    name,\n                    coord{\n                      lat,\n                      lng: lon\n                    }\n                  },\n                  list {\n                    main {\n                      temp_f,\n                      pressure,\n                      humidity\n                    }\n                  }\n                }\n              }\n              '
 	    }).then(function (response) {
 	      dispatch(receiveWeather(response.data.data.weatherForecast));
 	    });
@@ -22406,7 +22406,7 @@
 	    key: 'renderCityWeather',
 	    value: function renderCityWeather(cityData) {
 	      var temps = cityData.list.map(function (weather) {
-	        return weather.main.temp;
+	        return weather.main.temp_f;
 	      });
 	      var pressures = cityData.list.map(function (weather) {
 	        return weather.main.pressure;
@@ -22431,7 +22431,7 @@
 	        _react2.default.createElement(
 	          'td',
 	          null,
-	          _react2.default.createElement(_SparkLineChart2.default, { data: temps, color: 'red', units: 'K' })
+	          _react2.default.createElement(_SparkLineChart2.default, { data: temps, color: 'red', units: 'F' })
 	        ),
 	        _react2.default.createElement(
 	          'td',
@@ -22467,7 +22467,7 @@
 	            _react2.default.createElement(
 	              'th',
 	              null,
-	              'Temperature (K)'
+	              'Temperature (F)'
 	            ),
 	            _react2.default.createElement(
 	              'th',

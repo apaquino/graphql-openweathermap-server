@@ -6,7 +6,7 @@ import GoogleCityMap from '../components/GoogleCityMap';
 class WeatherList extends Component {
 
   renderCityWeather(cityData) {
-    const temps = cityData.list.map(weather => weather.main.temp);
+    const temps = cityData.list.map(weather => weather.main.temp_f);
     const pressures = cityData.list.map(weather => weather.main.pressure);
     const humidities = cityData.list.map(weather => weather.main.humidity);
     const { lat, lng } = cityData.city.coord;
@@ -15,7 +15,7 @@ class WeatherList extends Component {
     return (
       <tr key={cityData.city.id}>
         <td className="googlemap"><GoogleCityMap lat={lat} lng={lng} /></td>
-        <td><SparkLineChart data={temps} color="red" units="K" /></td>
+        <td><SparkLineChart data={temps} color="red" units="F" /></td>
         <td><SparkLineChart data={pressures} color="blue" units="hPa"/></td>
         <td><SparkLineChart data={humidities} color="orange" units="%"/></td>
       </tr>
@@ -30,7 +30,7 @@ class WeatherList extends Component {
         <thead>
           <tr>
             <th>City</th>
-            <th>Temperature (K)</th>
+            <th>Temperature (F)</th>
             <th>Pressure(hPA)</th>
             <th>Humidity(%)</th>
           </tr>

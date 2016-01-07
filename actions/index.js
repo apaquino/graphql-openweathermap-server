@@ -35,7 +35,7 @@ export function fetchWeather(term) {
                   },
                   list {
                     main {
-                      temp,
+                      temp_f,
                       pressure,
                       humidity
                     }
