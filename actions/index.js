@@ -17,6 +17,7 @@ export function receiveWeather(city) {
     city
   };
 }
+
 export function clearWeather() {
   return {
     type: CLEAR_WEATHER
@@ -49,8 +50,8 @@ export function fetchWeather(term) {
               }
               `
             })
-            .then(function (response) {
-              dispatch(receiveWeather(response.data.data.weatherForecast))
-            })
+            .then( response => {
+              dispatch(receiveWeather(response.data.data.weatherForecast));
+            });
   };
 }

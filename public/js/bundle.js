@@ -21139,6 +21139,7 @@
 	    city: city
 	  };
 	}
+
 	function clearWeather() {
 	  return {
 	    type: CLEAR_WEATHER
