@@ -22370,6 +22370,7 @@
 	    isLoading: state.weather.isLoading
 	  };
 	}
+
 	function mapDispatchToProps(dispatch) {
 	  return (0, _redux.bindActionCreators)({ fetchWeather: _index.fetchWeather }, dispatch);
 	}
@@ -22496,12 +22497,12 @@
 	              _react2.default.createElement(
 	                'th',
 	                null,
-	                'Pressure(hPA)'
+	                'Pressure (hPA)'
 	              ),
 	              _react2.default.createElement(
 	                'th',
 	                null,
-	                'Humidity(%)'
+	                'Humidity (%)'
 	              )
 	            )
 	          ),

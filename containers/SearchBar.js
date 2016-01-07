@@ -8,7 +8,7 @@ class SearchBar extends Component {
     super(props);
     this.state = {
       term: ""
-    }
+    };
   }
 
   onFormSubmit = (e) => {
@@ -41,6 +41,7 @@ function mapStateToProps(state) {
     isLoading: state.weather.isLoading
   }
 }
+
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({fetchWeather}, dispatch);
 }
