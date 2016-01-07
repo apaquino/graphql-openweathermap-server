@@ -18,7 +18,6 @@ export function receiveWeather(city) {
 }
 
 export function fetchWeather(term) {
-
   return dispatch => {
     dispatch(requestWeather(term));
     return axios.post('/graphql', {

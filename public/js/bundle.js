@@ -20833,6 +20833,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var logger = (0, _reduxLogger2.default)();
+
 	var createStoreWithMiddleware = (0, _redux.applyMiddleware)(_reduxThunk2.default, logger)(_redux.createStore);
 
 	function configureStore(initialState) {
@@ -21133,7 +21134,6 @@
 	}
 
 	function fetchWeather(term) {
-
 	  return function (dispatch) {
 	    dispatch(requestWeather(term));
 	    return _axios2.default.post('/graphql', {
@@ -22418,8 +22418,6 @@
 	      var lat = _cityData$city$coord.lat;
 	      var lng = _cityData$city$coord.lng;
 
-	      console.log(lat);
-	      console.log(lng);
 	      return _react2.default.createElement(
 	        'tr',
 	        { key: cityData.city.id },
@@ -22448,8 +22446,6 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      console.log("weatherlist prop", this.props.weather.cities);
-
 	      return _react2.default.createElement(
 	        'table',
 	        { className: 'table table-hover' },

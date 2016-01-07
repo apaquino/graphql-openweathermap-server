@@ -10,8 +10,7 @@ class WeatherList extends Component {
     const pressures = cityData.list.map(weather => weather.main.pressure);
     const humidities = cityData.list.map(weather => weather.main.humidity);
     const { lat, lng } = cityData.city.coord;
-    console.log(lat);
-    console.log(lng);
+
     return (
       <tr key={cityData.city.id}>
         <td className="googlemap"><GoogleCityMap lat={lat} lng={lng} /></td>
@@ -23,8 +22,6 @@ class WeatherList extends Component {
   }
 
   render() {
-    console.log("weatherlist prop", this.props.weather.cities);
-
     return (
       <table className="table table-hover">
         <thead>
