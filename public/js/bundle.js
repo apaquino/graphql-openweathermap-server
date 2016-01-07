@@ -22522,11 +22522,11 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function average(data) {
-
 	  return (data.reduce(function (a, b) {
 	    return a + b;
 	  }, 0) / data.length).toFixed(2);
 	}
+
 	var SparkLineChart = function SparkLineChart(props) {
 	  return _react2.default.createElement(
 	    'div',
