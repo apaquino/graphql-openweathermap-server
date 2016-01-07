@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import SparkLineChart from '../components/SparkLineChart';
-import GoogleCityMap from '../components/GoogleCityMap';
+import SparkLineChart from './SparkLineChart';
+import GoogleCityMap from './GoogleCityMap';
 
 const WeatherListItem = ({cityData, deleteCity}) => {
 

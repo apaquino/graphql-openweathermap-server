@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { clearWeather, deleteCity } from '../actions/index';
-import WeatherListItem from './WeatherListItem';
+import WeatherListItem from '../components/WeatherListItem';
 
 class WeatherList extends Component {
   render() {

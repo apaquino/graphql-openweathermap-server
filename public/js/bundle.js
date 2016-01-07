@@ -22416,7 +22416,7 @@
 
 	var _index = __webpack_require__(182);
 
-	var _WeatherListItem = __webpack_require__(250);
+	var _WeatherListItem = __webpack_require__(251);
 
 	var _WeatherListItem2 = _interopRequireDefault(_WeatherListItem);
 
@@ -27297,7 +27297,8 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 250 */
+/* 250 */,
+/* 251 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
