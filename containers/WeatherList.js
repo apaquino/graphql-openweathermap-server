@@ -14,7 +14,7 @@ class WeatherList extends Component {
     console.log(lng);
     return (
       <tr key={cityData.city.id}>
-        <td className=".googlemap"><GoogleCityMap lat={lat} lng={lng} /></td>
+        <td className="googlemap"><GoogleCityMap lat={lat} lng={lng} /></td>
         <td><SparkLineChart data={temps} color="red" units="K" /></td>
         <td><SparkLineChart data={pressures} color="blue" units="hPa"/></td>
         <td><SparkLineChart data={humidities} color="orange" units="%"/></td>

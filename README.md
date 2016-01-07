@@ -95,3 +95,9 @@ query {
 I plan to add other query fields in the future and split up the code as it gets bigger.  
 
 It currently works inside the GraphiQL browser.  I plan to make a sample app to make it work from a browser app in the future.
+
+There is a branch with a sample React/Redux app using GraphQL.
+
+```
+git checkout with_react_example
+```
