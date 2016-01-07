@@ -47,7 +47,7 @@ class WeatherList extends Component {
             style={{float: 'right'}}
             onClick={() => clearWeather()}
           >
-              Clear
+            {weather.cities.length > 1 ? "Clear All" : "Clear"}  
           </button>
         )}
       </div>

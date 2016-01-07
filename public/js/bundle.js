@@ -22521,7 +22521,7 @@
 	              return clearWeather();
 	            }
 	          },
-	          'Clear'
+	          weather.cities.length > 1 ? "Clear All" : "Clear"
 	        )
 	      );
 	    }
