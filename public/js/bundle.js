@@ -22377,7 +22377,9 @@
 
 	var _reactRedux = __webpack_require__(168);
 
-	var _reactSparklines = __webpack_require__(210);
+	var _SparkLineChart = __webpack_require__(211);
+
+	var _SparkLineChart2 = _interopRequireDefault(_SparkLineChart);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22413,11 +22415,7 @@
 	        _react2.default.createElement(
 	          'td',
 	          null,
-	          _react2.default.createElement(
-	            _reactSparklines.Sparklines,
-	            { height: 120, width: 180, data: temps },
-	            _react2.default.createElement(_reactSparklines.SparklinesLine, { color: 'red' })
-	          )
+	          _react2.default.createElement(_SparkLineChart2.default, { data: temps, color: 'red' })
 	        )
 	      );
 	    }
@@ -23177,6 +23175,34 @@
 	/******/ ])
 	});
 	;
+
+/***/ },
+/* 211 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactSparklines = __webpack_require__(210);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var SparkLineChart = function SparkLineChart(props) {
+	  return _react2.default.createElement(
+	    _reactSparklines.Sparklines,
+	    { height: 120, width: 180, data: props.data },
+	    _react2.default.createElement(_reactSparklines.SparklinesLine, { color: props.color })
+	  );
+	};
+
+	exports.default = SparkLineChart;
 
 /***/ }
 /******/ ]);
