@@ -41,7 +41,7 @@ To start the server, run this command:
 npm start
 ```
 
-Open your browser and go to http://localhost:8888/graphql
+To use GraphiQL, open your browser and go to http://localhost:8888/graphql
 
 Review the Docs in the upper right hand corner to view more about the fields available.
 
@@ -131,3 +131,5 @@ I plan to add other query fields in the future and split up the code as it gets 
 Also, I will add descriptions to the fields and types so graphiql can automatically document it.
 
 The graphiql site is available and I created a sample app using graphql and redux.
+
+To use view the app, open your browser and go to http://localhost:8888 
