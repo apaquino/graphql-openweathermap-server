@@ -36,7 +36,6 @@ export default API_KEYS;
 
 To start the server, run this command:
 
-
 ```
 npm start
 ```
@@ -132,4 +131,10 @@ Also, I will add descriptions to the fields and types so graphiql can automatica
 
 The graphiql site is available and I created a sample app using graphql and redux.
 
-To use view the app, open your browser and go to http://localhost:8888 
+Before you view the app, run the following command
+
+```
+npm run devuild
+```
+
+To use view the app, open your browser and go to http://localhost:8888
