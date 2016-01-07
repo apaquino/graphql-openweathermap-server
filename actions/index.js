@@ -28,6 +28,11 @@ export function fetchWeather(term) {
                   city {
                     id,
                     name
+                  },
+                  list {
+                    main {
+                      temp
+                    }
                   }
                 }
               }
