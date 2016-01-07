@@ -20996,7 +20996,7 @@
 	  return function (dispatch) {
 	    dispatch(requestWeather(term));
 	    return _axios2.default.post('/graphql', {
-	      query: '\n              {\n                weatherForecast(city:"' + term + '") {\n                  city {\n                    id,\n                    name\n                  },\n                  list {\n                    main {\n                      temp\n                    }\n                  }\n                }\n              }\n              '
+	      query: '\n              {\n                weatherForecast(city:"' + term + '") {\n                  city {\n                    id,\n                    name\n                  },\n                  list {\n                    main {\n                      temp,\n                      pressure,\n                      humidity\n                    }\n                  }\n                }\n              }\n              '
 	    }).then(function (response) {
 	      dispatch(receiveWeather(response.data.data.weatherForecast));
 	    });
@@ -22404,6 +22404,13 @@
 	      var temps = cityData.list.map(function (weather) {
 	        return weather.main.temp;
 	      });
+	      var pressures = cityData.list.map(function (weather) {
+	        return weather.main.pressure;
+	      });
+	      var humidities = cityData.list.map(function (weather) {
+	        return weather.main.humidity;
+	      });
+
 	      return _react2.default.createElement(
 	        'tr',
 	        { key: cityData.city.id },
@@ -22416,6 +22423,16 @@
 	          'td',
 	          null,
 	          _react2.default.createElement(_SparkLineChart2.default, { data: temps, color: 'red' })
+	        ),
+	        _react2.default.createElement(
+	          'td',
+	          null,
+	          _react2.default.createElement(_SparkLineChart2.default, { data: humidities, color: 'orange' })
+	        ),
+	        _react2.default.createElement(
+	          'td',
+	          null,
+	          _react2.default.createElement(_SparkLineChart2.default, { data: pressures, color: 'blue' })
 	        )
 	      );
 	    }

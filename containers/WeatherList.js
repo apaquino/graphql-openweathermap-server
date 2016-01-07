@@ -6,12 +6,15 @@ class WeatherList extends Component {
 
   renderCityWeather(cityData) {
     const temps = cityData.list.map(weather => weather.main.temp);
+    const pressures = cityData.list.map(weather => weather.main.pressure);
+    const humidities = cityData.list.map(weather => weather.main.humidity);
+
     return (
       <tr key={cityData.city.id}>
         <td>{cityData.city.name}</td>
-        <td>
-          <SparkLineChart data={temps} color="red" />
-        </td>
+        <td><SparkLineChart data={temps} color="red" /></td>
+        <td><SparkLineChart data={humidities} color="orange" /></td>
+        <td><SparkLineChart data={pressures} color="blue" /></td>
       </tr>
     )
   }
