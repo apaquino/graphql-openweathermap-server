@@ -21152,6 +21152,7 @@
 	    return _axios2.default.post('/graphql', {
 	      query: '\n              {\n                weatherForecast(city:"' + term + '") {\n                  city {\n                    id,\n                    name,\n                    coord{\n                      lat,\n                      lng: lon\n                    }\n                  },\n                  list {\n                    main {\n                      temp_f,\n                      pressure,\n                      humidity\n                    }\n                  }\n                }\n              }\n              '
 	    }).then(function (response) {
+	      // response from axios comes with data object and so does graphql
 	      dispatch(receiveWeather(response.data.data.weatherForecast));
 	    });
 	  };
@@ -22230,8 +22231,6 @@
 
 	'use strict';
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
@@ -22250,53 +22249,35 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var App = function (_Component) {
-	  _inherits(App, _Component);
-
-	  function App() {
-	    _classCallCheck(this, App);
-
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(App).apply(this, arguments));
-	  }
-
-	  _createClass(App, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	          'nav',
-	          { className: 'navbar navbar-fixed-top navbar-dark bg-primary' },
-	          '5 Day Weather Forecast'
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { style: { padding: '3rem 1.5rem' } },
-	          _react2.default.createElement(_SearchBar2.default, null),
-	          _react2.default.createElement(_WeatherList2.default, null)
-	        ),
-	        _react2.default.createElement(
-	          'nav',
-	          { className: 'navbar navbar-fixed-bottom navbar-light' },
-	          _react2.default.createElement(
-	            'span',
-	            { style: { color: '#D3D3D3' } },
-	            'Created with React/Redux/GraphQL/Bootstrap'
-	          )
-	        )
-	      );
-	    }
-	  }]);
-
-	  return App;
-	}(_react.Component);
+	var App = function App() {
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(
+	      'nav',
+	      { className: 'navbar navbar-fixed-top navbar-dark bg-primary' },
+	      '5 Day Weather Forecast'
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { style: { padding: '3rem 1.5rem' } },
+	      _react2.default.createElement(_SearchBar2.default, null),
+	      _react2.default.createElement(_WeatherList2.default, null)
+	    ),
+	    _react2.default.createElement(
+	      'nav',
+	      {
+	        className: 'navbar navbar-fixed-bottom navbar-light',
+	        style: { pointerEvents: 'none' }
+	      },
+	      _react2.default.createElement(
+	        'span',
+	        { style: { color: '#D3D3D3' } },
+	        'Created with React/Redux/GraphQL/Bootstrap'
+	      )
+	    )
+	  );
+	};
 
 	exports.default = App;
 

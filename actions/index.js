@@ -51,6 +51,7 @@ export function fetchWeather(term) {
               `
             })
             .then( response => {
+              // response from axios comes with data object and so does graphql
               dispatch(receiveWeather(response.data.data.weatherForecast));
             });
   };

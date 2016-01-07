@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import SearchBar from '../containers/SearchBar';
 import WeatherList from '../containers/WeatherList';
 
-class App extends Component {
-  render() {
+const App = () => {
     return (
       <div>
         <nav className="navbar navbar-fixed-top navbar-dark bg-primary">
@@ -13,14 +12,16 @@ class App extends Component {
           <SearchBar />
           <WeatherList />
         </div>
-        <nav className="navbar navbar-fixed-bottom navbar-light">
+        <nav
+          className="navbar navbar-fixed-bottom navbar-light"
+          style={{pointerEvents: 'none'}}
+        >
           <span style={{color: '#D3D3D3'}}>
             Created with React/Redux/GraphQL/Bootstrap
           </span>
         </nav>
       </div>
     )
-  }
 }
 
 export default App;
