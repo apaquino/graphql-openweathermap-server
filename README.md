@@ -129,8 +129,6 @@ I plan to add other query fields in the future and split up the code as it gets 
 
 Also, I will add descriptions to the fields and types so graphiql can automatically document it.
 
-The graphiql site is available and I created a sample app using graphql and redux.
-
 Before you view the app, run the following command
 
 ```
