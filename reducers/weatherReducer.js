@@ -2,7 +2,7 @@ import {REQUEST_WEATHER, RECEIVE_WEATHER} from '../actions/index';
 
 const initialState = {
   isLoading: false,
-  weather:[]
+  cities:[]
 };
 
 function weather(state = initialState, action) {
@@ -12,9 +12,10 @@ function weather(state = initialState, action) {
       isLoading: true
     });
   case RECEIVE_WEATHER:
+  console.log("payload from receive weather", action);
     return Object.assign({}, state, {
       isLoading: false,
-      weather: action.weather
+      cities: [action.city, ...state.cities]
     });
   default:
     return state;

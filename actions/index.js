@@ -10,10 +10,10 @@ export function requestWeather(term) {
   };
 }
 
-export function receiveWeather(weather) {
+export function receiveWeather(city) {
   return {
     type: RECEIVE_WEATHER,
-    weather
+    city
   };
 }
 
@@ -25,16 +25,17 @@ export function fetchWeather(term) {
               query: `
               {
                 weatherForecast(city:"${term}") {
-              		cod,
-                  message,
-                  cnt
+                  city {
+                    id,
+                    name
+                  }
                 }
               }
               `
             })
             .then(function (response) {
-              console.log(response.data);
-              dispatch(receiveWeather(response.data))
+              console.log("from action dispatch", response.data.data.weatherForecast);
+              dispatch(receiveWeather(response.data.data.weatherForecast))
             })
   };
 }

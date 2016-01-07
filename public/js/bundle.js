@@ -58,13 +58,13 @@
 
 	var _reactRedux = __webpack_require__(168);
 
-	var _App = __webpack_require__(177);
-
-	var _App2 = _interopRequireDefault(_App);
-
 	var _ConfigureStore = __webpack_require__(197);
 
 	var _ConfigureStore2 = _interopRequireDefault(_ConfigureStore);
+
+	var _App = __webpack_require__(177);
+
+	var _App2 = _interopRequireDefault(_App);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -20826,6 +20826,10 @@
 
 	var _SearchBar2 = _interopRequireDefault(_SearchBar);
 
+	var _WeatherList = __webpack_require__(202);
+
+	var _WeatherList2 = _interopRequireDefault(_WeatherList);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -20849,7 +20853,8 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(_SearchBar2.default, null)
+	        _react2.default.createElement(_SearchBar2.default, null),
+	        _react2.default.createElement(_WeatherList2.default, null)
 	      );
 	    }
 	  }]);
@@ -20979,10 +20984,10 @@
 	  };
 	}
 
-	function receiveWeather(weather) {
+	function receiveWeather(city) {
 	  return {
 	    type: RECEIVE_WEATHER,
-	    weather: weather
+	    city: city
 	  };
 	}
 
@@ -20991,10 +20996,10 @@
 	  return function (dispatch) {
 	    dispatch(requestWeather(term));
 	    return _axios2.default.post('/graphql', {
-	      query: '\n              {\n                weatherForecast(city:"' + term + '") {\n              \t\tcod,\n                  message,\n                  cnt\n                }\n              }\n              '
+	      query: '\n              {\n                weatherForecast(city:"' + term + '") {\n                  city {\n                    id,\n                    name\n                  }\n                }\n              }\n              '
 	    }).then(function (response) {
-	      console.log(response.data);
-	      dispatch(receiveWeather(response.data));
+	      console.log("from action dispatch", response.data.data.weatherForecast);
+	      dispatch(receiveWeather(response.data.data.weatherForecast));
 	    });
 	  };
 	}
@@ -22319,7 +22324,7 @@
 /* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -22327,9 +22332,11 @@
 
 	var _index = __webpack_require__(179);
 
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 	var initialState = {
 	  isLoading: false,
-	  weather: []
+	  cities: []
 	};
 
 	function weather() {
@@ -22342,9 +22349,10 @@
 	        isLoading: true
 	      });
 	    case _index.RECEIVE_WEATHER:
+	      console.log("payload from receive weather", action);
 	      return Object.assign({}, state, {
 	        isLoading: false,
-	        weather: action.weather
+	        cities: [action.city].concat(_toConsumableArray(state.cities))
 	      });
 	    default:
 	      return state;
@@ -22352,6 +22360,94 @@
 	}
 
 	exports.default = weather;
+
+/***/ },
+/* 202 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRedux = __webpack_require__(168);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var WeatherList = function (_Component) {
+	  _inherits(WeatherList, _Component);
+
+	  function WeatherList() {
+	    _classCallCheck(this, WeatherList);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(WeatherList).apply(this, arguments));
+	  }
+
+	  _createClass(WeatherList, [{
+	    key: 'render',
+	    value: function render() {
+	      console.log("weatherlist state", this.props);
+	      return _react2.default.createElement(
+	        'table',
+	        { className: 'table table-hover' },
+	        _react2.default.createElement(
+	          'thead',
+	          null,
+	          _react2.default.createElement(
+	            'tr',
+	            null,
+	            _react2.default.createElement(
+	              'th',
+	              null,
+	              'City'
+	            ),
+	            _react2.default.createElement(
+	              'th',
+	              null,
+	              'Temperature'
+	            ),
+	            _react2.default.createElement(
+	              'th',
+	              null,
+	              'Pressure'
+	            ),
+	            _react2.default.createElement(
+	              'th',
+	              null,
+	              'Humidity'
+	            )
+	          )
+	        ),
+	        _react2.default.createElement('tbody', null)
+	      );
+	    }
+	  }]);
+
+	  return WeatherList;
+	}(_react.Component);
+
+	function mapStateToProps(_ref) {
+	  var weather = _ref.weather;
+
+	  return {
+	    weather: weather
+	  };
+	}
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(WeatherList);
 
 /***/ }
 /******/ ]);
