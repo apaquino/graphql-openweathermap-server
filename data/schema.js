@@ -121,7 +121,7 @@ const query = new GraphQLObjectType({
         }
       },
       resolve: (_, {city}) => {
-        const url = `http://api.openweathermap.org/data/2.5/forecast?q=${city},us&appid=${API_KEYS.weather}`
+        const url = `http://api.openweathermap.org/data/2.5/forecast?q=${city},us&appid=${API_KEYS.weather}`;
         return axios.get(url)
                 .then(function(response) {
                   return response.data;
@@ -131,7 +131,7 @@ const query = new GraphQLObjectType({
   }),
 });
 
-let schema = new GraphQLSchema({
+const schema = new GraphQLSchema({
   query,
 });
 
