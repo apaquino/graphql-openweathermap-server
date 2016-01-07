@@ -20998,7 +20998,6 @@
 	    return _axios2.default.post('/graphql', {
 	      query: '\n              {\n                weatherForecast(city:"' + term + '") {\n                  city {\n                    id,\n                    name\n                  }\n                }\n              }\n              '
 	    }).then(function (response) {
-	      console.log("from action dispatch", response.data.data.weatherForecast);
 	      dispatch(receiveWeather(response.data.data.weatherForecast));
 	    });
 	  };
@@ -22324,7 +22323,7 @@
 /* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -22349,7 +22348,6 @@
 	        isLoading: true
 	      });
 	    case _index.RECEIVE_WEATHER:
-	      console.log("payload from receive weather", action);
 	      return Object.assign({}, state, {
 	        isLoading: false,
 	        cities: [action.city].concat(_toConsumableArray(state.cities))
@@ -22397,9 +22395,23 @@
 	  }
 
 	  _createClass(WeatherList, [{
+	    key: 'renderCityWeather',
+	    value: function renderCityWeather(cityData) {
+	      return _react2.default.createElement(
+	        'tr',
+	        null,
+	        _react2.default.createElement(
+	          'td',
+	          null,
+	          cityData.city.name
+	        )
+	      );
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
-	      console.log("weatherlist state", this.props);
+	      console.log("weatherlist prop", this.props.weather.cities);
+
 	      return _react2.default.createElement(
 	        'table',
 	        { className: 'table table-hover' },
@@ -22431,7 +22443,11 @@
 	            )
 	          )
 	        ),
-	        _react2.default.createElement('tbody', null)
+	        _react2.default.createElement(
+	          'tbody',
+	          null,
+	          this.props.weather.cities.map(this.renderCityWeather)
+	        )
 	      );
 	    }
 	  }]);

@@ -12,7 +12,6 @@ function weather(state = initialState, action) {
       isLoading: true
     });
   case RECEIVE_WEATHER:
-  console.log("payload from receive weather", action);
     return Object.assign({}, state, {
       isLoading: false,
       cities: [action.city, ...state.cities]

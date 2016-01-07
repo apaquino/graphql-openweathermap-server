@@ -34,7 +34,6 @@ export function fetchWeather(term) {
               `
             })
             .then(function (response) {
-              console.log("from action dispatch", response.data.data.weatherForecast);
               dispatch(receiveWeather(response.data.data.weatherForecast))
             })
   };
