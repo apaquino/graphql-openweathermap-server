@@ -27,7 +27,11 @@ export function fetchWeather(term) {
                 weatherForecast(city:"${term}") {
                   city {
                     id,
-                    name
+                    name,
+                    coord{
+                      lat,
+                      lng: lon
+                    }
                   },
                   list {
                     main {
