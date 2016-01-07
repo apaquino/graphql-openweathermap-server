@@ -27,15 +27,22 @@ class SearchBar extends Component {
           onChange={(e) => this.setState({term: e.target.value})}
         />
         <span className="input-group-btn">
-          <button type="submit" className="btn btn-secondary">Search</button>
+          <button type="submit" className="btn btn-secondary">
+            {this.props.isLoading ? "Searching ..." : "Search" }
+          </button>
         </span>
       </form>
     )
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    isLoading: state.weather.isLoading
+  }
+}
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({fetchWeather}, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(SearchBar);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

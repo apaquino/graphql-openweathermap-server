@@ -22355,7 +22355,7 @@
 	          _react2.default.createElement(
 	            'button',
 	            { type: 'submit', className: 'btn btn-secondary' },
-	            'Search'
+	            this.props.isLoading ? "Searching ..." : "Search"
 	          )
 	        )
 	      );
@@ -22365,11 +22365,16 @@
 	  return SearchBar;
 	}(_react.Component);
 
+	function mapStateToProps(state) {
+	  return {
+	    isLoading: state.weather.isLoading
+	  };
+	}
 	function mapDispatchToProps(dispatch) {
 	  return (0, _redux.bindActionCreators)({ fetchWeather: _index.fetchWeather }, dispatch);
 	}
 
-	exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(SearchBar);
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(SearchBar);
 
 /***/ },
 /* 202 */
