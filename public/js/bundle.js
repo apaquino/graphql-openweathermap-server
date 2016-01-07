@@ -21060,7 +21060,7 @@
 /* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -21094,6 +21094,9 @@
 	        isLoading: false,
 	        cities: []
 	      });
+	    case _index.DELETE_CITY:
+	      console.log("trying to be deleted", action.id);
+	      return state;
 	    default:
 	      return state;
 	  }
@@ -21110,10 +21113,11 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.CLEAR_WEATHER = exports.RECEIVE_WEATHER = exports.REQUEST_WEATHER = undefined;
+	exports.DELETE_CITY = exports.CLEAR_WEATHER = exports.RECEIVE_WEATHER = exports.REQUEST_WEATHER = undefined;
 	exports.requestWeather = requestWeather;
 	exports.receiveWeather = receiveWeather;
 	exports.clearWeather = clearWeather;
+	exports.deleteCity = deleteCity;
 	exports.fetchWeather = fetchWeather;
 
 	var _axios = __webpack_require__(183);
@@ -21125,6 +21129,7 @@
 	var REQUEST_WEATHER = exports.REQUEST_WEATHER = 'REQUEST_WEATHER';
 	var RECEIVE_WEATHER = exports.RECEIVE_WEATHER = 'RECEIVE_WEATHER';
 	var CLEAR_WEATHER = exports.CLEAR_WEATHER = 'CLEAR_WEATHER';
+	var DELETE_CITY = exports.DELETE_CITY = 'DELETE_CITY';
 
 	function requestWeather(term) {
 	  return {
@@ -21143,6 +21148,13 @@
 	function clearWeather() {
 	  return {
 	    type: CLEAR_WEATHER
+	  };
+	}
+
+	function deleteCity(id) {
+	  return {
+	    type: DELETE_CITY,
+	    id: id
 	  };
 	}
 
@@ -22399,13 +22411,9 @@
 
 	var _index = __webpack_require__(182);
 
-	var _SparkLineChart = __webpack_require__(203);
+	var _WeatherListItem = __webpack_require__(250);
 
-	var _SparkLineChart2 = _interopRequireDefault(_SparkLineChart);
-
-	var _GoogleCityMap = __webpack_require__(205);
-
-	var _GoogleCityMap2 = _interopRequireDefault(_GoogleCityMap);
+	var _WeatherListItem2 = _interopRequireDefault(_WeatherListItem);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22425,52 +22433,12 @@
 	  }
 
 	  _createClass(WeatherList, [{
-	    key: 'renderCityWeather',
-	    value: function renderCityWeather(cityData) {
-	      var temps = cityData.list.map(function (weather) {
-	        return weather.main.temp_f;
-	      });
-	      var pressures = cityData.list.map(function (weather) {
-	        return weather.main.pressure;
-	      });
-	      var humidities = cityData.list.map(function (weather) {
-	        return weather.main.humidity;
-	      });
-	      var _cityData$city$coord = cityData.city.coord;
-	      var lat = _cityData$city$coord.lat;
-	      var lng = _cityData$city$coord.lng;
-
-	      return _react2.default.createElement(
-	        'tr',
-	        { key: cityData.city.id },
-	        _react2.default.createElement(
-	          'td',
-	          { className: 'googlemap' },
-	          _react2.default.createElement(_GoogleCityMap2.default, { lat: lat, lng: lng })
-	        ),
-	        _react2.default.createElement(
-	          'td',
-	          null,
-	          _react2.default.createElement(_SparkLineChart2.default, { data: temps, color: 'red', units: '°F' })
-	        ),
-	        _react2.default.createElement(
-	          'td',
-	          null,
-	          _react2.default.createElement(_SparkLineChart2.default, { data: pressures, color: 'blue', units: 'hPa' })
-	        ),
-	        _react2.default.createElement(
-	          'td',
-	          null,
-	          _react2.default.createElement(_SparkLineChart2.default, { data: humidities, color: 'orange', units: '%' })
-	        )
-	      );
-	    }
-	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var _props = this.props;
 	      var weather = _props.weather;
 	      var clearWeather = _props.clearWeather;
+	      var deleteCity = _props.deleteCity;
 
 	      return _react2.default.createElement(
 	        'div',
@@ -22503,13 +22471,20 @@
 	                'th',
 	                null,
 	                'Humidity (%)'
-	              )
+	              ),
+	              _react2.default.createElement('th', null)
 	            )
 	          ),
 	          _react2.default.createElement(
 	            'tbody',
 	            null,
-	            weather.cities.map(this.renderCityWeather)
+	            weather.cities.map(function (cityData) {
+	              return _react2.default.createElement(_WeatherListItem2.default, {
+	                key: cityData.city.id,
+	                cityData: cityData,
+	                deleteCity: deleteCity
+	              });
+	            })
 	          )
 	        ),
 	        weather.cities.length > 0 && _react2.default.createElement(
@@ -22539,7 +22514,7 @@
 	}
 
 	function mapDispatchToProps(dispatch) {
-	  return (0, _redux.bindActionCreators)({ clearWeather: _index.clearWeather }, dispatch);
+	  return (0, _redux.bindActionCreators)({ clearWeather: _index.clearWeather, deleteCity: _index.deleteCity }, dispatch);
 	}
 
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(WeatherList);
@@ -27315,6 +27290,88 @@
 	});
 	exports["default"] = ["places_changed"];
 	module.exports = exports["default"];
+
+/***/ },
+/* 250 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _SparkLineChart = __webpack_require__(203);
+
+	var _SparkLineChart2 = _interopRequireDefault(_SparkLineChart);
+
+	var _GoogleCityMap = __webpack_require__(205);
+
+	var _GoogleCityMap2 = _interopRequireDefault(_GoogleCityMap);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var WeatherListItem = function WeatherListItem(_ref) {
+	  var cityData = _ref.cityData;
+	  var deleteCity = _ref.deleteCity;
+
+	  var temps = cityData.list.map(function (weather) {
+	    return weather.main.temp_f;
+	  });
+	  var pressures = cityData.list.map(function (weather) {
+	    return weather.main.pressure;
+	  });
+	  var humidities = cityData.list.map(function (weather) {
+	    return weather.main.humidity;
+	  });
+	  var _cityData$city$coord = cityData.city.coord;
+	  var lat = _cityData$city$coord.lat;
+	  var lng = _cityData$city$coord.lng;
+
+	  return _react2.default.createElement(
+	    'tr',
+	    null,
+	    _react2.default.createElement(
+	      'td',
+	      { className: 'googlemap' },
+	      _react2.default.createElement(_GoogleCityMap2.default, { lat: lat, lng: lng })
+	    ),
+	    _react2.default.createElement(
+	      'td',
+	      null,
+	      _react2.default.createElement(_SparkLineChart2.default, { data: temps, color: 'red', units: '°F' })
+	    ),
+	    _react2.default.createElement(
+	      'td',
+	      null,
+	      _react2.default.createElement(_SparkLineChart2.default, { data: pressures, color: 'blue', units: 'hPa' })
+	    ),
+	    _react2.default.createElement(
+	      'td',
+	      null,
+	      _react2.default.createElement(_SparkLineChart2.default, { data: humidities, color: 'orange', units: '%' })
+	    ),
+	    _react2.default.createElement(
+	      'td',
+	      null,
+	      _react2.default.createElement(
+	        'button',
+	        { className: 'btn btn-danger',
+	          onClick: function onClick() {
+	            return deleteCity(cityData.city.id);
+	          }
+	        },
+	        'X'
+	      )
+	    )
+	  );
+	};
+
+	exports.default = WeatherListItem;
 
 /***/ }
 /******/ ]);

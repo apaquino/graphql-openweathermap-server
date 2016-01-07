@@ -1,4 +1,4 @@
-import { REQUEST_WEATHER, RECEIVE_WEATHER, CLEAR_WEATHER } from '../actions/index';
+import { REQUEST_WEATHER, RECEIVE_WEATHER, CLEAR_WEATHER, DELETE_CITY } from '../actions/index';
 
 const initialState = {
   isLoading: false,
@@ -21,6 +21,9 @@ function weather(state = initialState, action) {
       isLoading: false,
       cities: []
     });
+  case DELETE_CITY:
+    console.log("trying to be deleted", action.id);
+    return state;
   default:
     return state;
   }

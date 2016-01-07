@@ -1,30 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { clearWeather } from '../actions/index';
-import SparkLineChart from '../components/SparkLineChart';
-import GoogleCityMap from '../components/GoogleCityMap';
+import { clearWeather, deleteCity } from '../actions/index';
+import WeatherListItem from './WeatherListItem';
 
 class WeatherList extends Component {
-
-  renderCityWeather(cityData) {
-    const temps = cityData.list.map(weather => weather.main.temp_f);
-    const pressures = cityData.list.map(weather => weather.main.pressure);
-    const humidities = cityData.list.map(weather => weather.main.humidity);
-    const { lat, lng } = cityData.city.coord;
-
-    return (
-      <tr key={cityData.city.id}>
-        <td className="googlemap"><GoogleCityMap lat={lat} lng={lng} /></td>
-        <td><SparkLineChart data={temps} color="red" units="&deg;F" /></td>
-        <td><SparkLineChart data={pressures} color="blue" units="hPa"/></td>
-        <td><SparkLineChart data={humidities} color="orange" units="%"/></td>
-      </tr>
-    )
-  }
-
   render() {
-    const { weather, clearWeather } = this.props;
+    const { weather, clearWeather, deleteCity } = this.props;
 
     return (
       <div>
@@ -35,10 +17,17 @@ class WeatherList extends Component {
               <th>Temperature (F)</th>
               <th>Pressure (hPA)</th>
               <th>Humidity (%)</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
-          {weather.cities.map(this.renderCityWeather)}
+          {weather.cities.map(cityData => {
+            return (<WeatherListItem
+                      key={cityData.city.id}
+                      cityData={cityData}
+                      deleteCity={deleteCity}
+                    />)
+          })}
           </tbody>
         </table>
         {weather.cities.length > 0 && (
@@ -47,7 +36,7 @@ class WeatherList extends Component {
             style={{float: 'right'}}
             onClick={() => clearWeather()}
           >
-            {weather.cities.length > 1 ? "Clear All" : "Clear"}  
+            {weather.cities.length > 1 ? "Clear All" : "Clear"}
           </button>
         )}
       </div>
@@ -62,7 +51,7 @@ function mapStateToProps({weather}) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({clearWeather}, dispatch);
+  return bindActionCreators({clearWeather, deleteCity}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(WeatherList);
