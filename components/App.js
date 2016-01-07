@@ -13,6 +13,11 @@ class App extends Component {
           <SearchBar />
           <WeatherList />
         </div>
+        <nav className="navbar navbar-fixed-bottom navbar-light">
+          <span style={{color: '#D3D3D3'}}>
+            Created with React/Redux/GraphQL/Bootstrap
+          </span>
+        </nav>
       </div>
     )
   }

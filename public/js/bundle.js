@@ -22280,6 +22280,15 @@
 	          { style: { padding: '3rem 1.5rem' } },
 	          _react2.default.createElement(_SearchBar2.default, null),
 	          _react2.default.createElement(_WeatherList2.default, null)
+	        ),
+	        _react2.default.createElement(
+	          'nav',
+	          { className: 'navbar navbar-fixed-bottom navbar-light' },
+	          _react2.default.createElement(
+	            'span',
+	            { style: { color: '#D3D3D3' } },
+	            'Created with React/Redux/GraphQL/Bootstrap'
+	          )
 	        )
 	      );
 	    }
