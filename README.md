@@ -1,8 +1,10 @@
-# GraphQL Server for Open Weather Map API
+# GraphQL Server for Open Weather Map API w/ sample React/Redux app.
 
 This is a GraphQL server for the OpenWeatherMap API for the 5 Day / 3 hour forecast.
 
-I did this to get more familiar with GraphQL.
+I did this to get more familiar with GraphQL.  
+
+The app accessing the GraphQL server is created by no surprise, React with Redux.
 
 To use this, I expect you to have babel installed globally because the npm start command doesn't look for it locally.
 
@@ -94,10 +96,4 @@ query {
 
 I plan to add other query fields in the future and split up the code as it gets bigger.  
 
-It currently works inside the GraphiQL browser.  I plan to make a sample app to make it work from a browser app in the future.
-
-There is a branch with a sample React/Redux app using GraphQL.
-
-```
-git checkout with_react_example
-```
+The graphiql site is available and I created a sample app using graphql and redux.
