@@ -23259,7 +23259,10 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var GoogleCityMap = function GoogleCityMap(props) {
+	var GoogleCityMap = function GoogleCityMap(_ref) {
+	  var lat = _ref.lat;
+	  var lng = _ref.lng;
+
 	  return _react2.default.createElement(_reactGoogleMaps.GoogleMapLoader, {
 	    containerElement: _react2.default.createElement('div', {
 	      style: {
@@ -23268,7 +23271,7 @@
 	    }),
 	    googleMapElement: _react2.default.createElement(_reactGoogleMaps.GoogleMap, {
 	      defaultZoom: 12,
-	      defaultCenter: { lat: props.lat, lng: props.lng }
+	      defaultCenter: { lat: lat, lng: lng }
 	    })
 	  });
 	};
