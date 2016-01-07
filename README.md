@@ -73,7 +73,9 @@ query {
         sea_level,
         grnd_level,
         humidity,
-        temp_kf
+        temp_kf,
+        temp_f,
+        temp_c
       },
       weather{
         id,
@@ -92,8 +94,14 @@ query {
 
   }
 }
+
+// the temp_c and temp_f are created in addition to what the API provides
+// now the developer doesn't need to calculate that if they want to
+// F or C, they just ask for it.
 ```
 
-I plan to add other query fields in the future and split up the code as it gets bigger.  
+I plan to add other query fields in the future and split up the code as it gets bigger.
+
+Also, I will add descriptions to the fields and types so graphiql can automatically document it. 
 
 The graphiql site is available and I created a sample app using graphql and redux.
