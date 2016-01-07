@@ -22568,23 +22568,27 @@
 	  }, 0) / data.length).toFixed(2);
 	}
 
-	var SparkLineChart = function SparkLineChart(props) {
+	var SparkLineChart = function SparkLineChart(_ref) {
+	  var data = _ref.data;
+	  var color = _ref.color;
+	  var units = _ref.units;
+
 	  return _react2.default.createElement(
 	    'div',
 	    null,
 	    _react2.default.createElement(
 	      _reactSparklines.Sparklines,
-	      { height: 120, width: 180, data: props.data },
-	      _react2.default.createElement(_reactSparklines.SparklinesLine, { color: props.color }),
+	      { height: 120, width: 180, data: data },
+	      _react2.default.createElement(_reactSparklines.SparklinesLine, { color: color }),
 	      _react2.default.createElement(_reactSparklines.SparklinesReferenceLine, { type: 'avg' })
 	    ),
 	    _react2.default.createElement(
 	      'div',
 	      null,
 	      'Avgerage: ',
-	      average(props.data),
+	      average(data),
 	      ' ',
-	      props.units
+	      units
 	    )
 	  );
 	};
