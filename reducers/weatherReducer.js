@@ -1,4 +1,4 @@
-import {REQUEST_WEATHER, RECEIVE_WEATHER} from '../actions/index';
+import { REQUEST_WEATHER, RECEIVE_WEATHER, CLEAR_WEATHER } from '../actions/index';
 
 const initialState = {
   isLoading: false,
@@ -15,6 +15,11 @@ function weather(state = initialState, action) {
     return Object.assign({}, state, {
       isLoading: false,
       cities: [action.city, ...state.cities]
+    });
+  case CLEAR_WEATHER:
+    return Object.assign({}, state, {
+      isLoading: false,
+      cities: []
     });
   default:
     return state;

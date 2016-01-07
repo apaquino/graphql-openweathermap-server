@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { clearWeather } from '../actions/index';
 import SparkLineChart from '../components/SparkLineChart';
 import GoogleCityMap from '../components/GoogleCityMap';
 
@@ -22,20 +24,33 @@ class WeatherList extends Component {
   }
 
   render() {
+    const { weather, clearWeather } = this.props;
+
     return (
-      <table className="table table-hover">
-        <thead>
-          <tr>
-            <th>City</th>
-            <th>Temperature (F)</th>
-            <th>Pressure(hPA)</th>
-            <th>Humidity(%)</th>
-          </tr>
-        </thead>
-        <tbody>
-        {this.props.weather.cities.map(this.renderCityWeather)}
-        </tbody>
-      </table>
+      <div>
+        <table className="table table-hover">
+          <thead>
+            <tr>
+              <th>City</th>
+              <th>Temperature (F)</th>
+              <th>Pressure(hPA)</th>
+              <th>Humidity(%)</th>
+            </tr>
+          </thead>
+          <tbody>
+          {weather.cities.map(this.renderCityWeather)}
+          </tbody>
+        </table>
+        {weather.cities.length > 0 && (
+          <button
+            className="btn btn-warning"
+            style={{float: 'right'}}
+            onClick={() => clearWeather()}
+          >
+              Clear
+          </button>
+        )}
+      </div>
     )
   }
 }
@@ -46,4 +61,8 @@ function mapStateToProps({weather}) {
   }
 }
 
-export default connect(mapStateToProps)(WeatherList);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({clearWeather}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(WeatherList);

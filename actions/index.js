@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const REQUEST_WEATHER = 'REQUEST_WEATHER';
 export const RECEIVE_WEATHER = 'RECEIVE_WEATHER';
+export const CLEAR_WEATHER = 'CLEAR_WEATHER';
 
 export function requestWeather(term) {
   return {
@@ -14,6 +15,11 @@ export function receiveWeather(city) {
   return {
     type: RECEIVE_WEATHER,
     city
+  };
+}
+export function clearWeather() {
+  return {
+    type: CLEAR_WEATHER
   };
 }
 

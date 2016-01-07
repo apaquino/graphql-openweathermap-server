@@ -21089,6 +21089,11 @@
 	        isLoading: false,
 	        cities: [action.city].concat(_toConsumableArray(state.cities))
 	      });
+	    case _index.CLEAR_WEATHER:
+	      return Object.assign({}, state, {
+	        isLoading: false,
+	        cities: []
+	      });
 	    default:
 	      return state;
 	  }
@@ -21105,9 +21110,10 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.RECEIVE_WEATHER = exports.REQUEST_WEATHER = undefined;
+	exports.CLEAR_WEATHER = exports.RECEIVE_WEATHER = exports.REQUEST_WEATHER = undefined;
 	exports.requestWeather = requestWeather;
 	exports.receiveWeather = receiveWeather;
+	exports.clearWeather = clearWeather;
 	exports.fetchWeather = fetchWeather;
 
 	var _axios = __webpack_require__(183);
@@ -21118,6 +21124,7 @@
 
 	var REQUEST_WEATHER = exports.REQUEST_WEATHER = 'REQUEST_WEATHER';
 	var RECEIVE_WEATHER = exports.RECEIVE_WEATHER = 'RECEIVE_WEATHER';
+	var CLEAR_WEATHER = exports.CLEAR_WEATHER = 'CLEAR_WEATHER';
 
 	function requestWeather(term) {
 	  return {
@@ -21130,6 +21137,11 @@
 	  return {
 	    type: RECEIVE_WEATHER,
 	    city: city
+	  };
+	}
+	function clearWeather() {
+	  return {
+	    type: CLEAR_WEATHER
 	  };
 	}
 
@@ -22377,6 +22389,10 @@
 
 	var _reactRedux = __webpack_require__(168);
 
+	var _redux = __webpack_require__(159);
+
+	var _index = __webpack_require__(182);
+
 	var _SparkLineChart = __webpack_require__(203);
 
 	var _SparkLineChart2 = _interopRequireDefault(_SparkLineChart);
@@ -22446,41 +22462,60 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _props = this.props;
+	      var weather = _props.weather;
+	      var clearWeather = _props.clearWeather;
+
 	      return _react2.default.createElement(
-	        'table',
-	        { className: 'table table-hover' },
+	        'div',
+	        null,
 	        _react2.default.createElement(
-	          'thead',
-	          null,
+	          'table',
+	          { className: 'table table-hover' },
 	          _react2.default.createElement(
-	            'tr',
+	            'thead',
 	            null,
 	            _react2.default.createElement(
-	              'th',
+	              'tr',
 	              null,
-	              'City'
-	            ),
-	            _react2.default.createElement(
-	              'th',
-	              null,
-	              'Temperature (F)'
-	            ),
-	            _react2.default.createElement(
-	              'th',
-	              null,
-	              'Pressure(hPA)'
-	            ),
-	            _react2.default.createElement(
-	              'th',
-	              null,
-	              'Humidity(%)'
+	              _react2.default.createElement(
+	                'th',
+	                null,
+	                'City'
+	              ),
+	              _react2.default.createElement(
+	                'th',
+	                null,
+	                'Temperature (F)'
+	              ),
+	              _react2.default.createElement(
+	                'th',
+	                null,
+	                'Pressure(hPA)'
+	              ),
+	              _react2.default.createElement(
+	                'th',
+	                null,
+	                'Humidity(%)'
+	              )
 	            )
+	          ),
+	          _react2.default.createElement(
+	            'tbody',
+	            null,
+	            weather.cities.map(this.renderCityWeather)
 	          )
 	        ),
-	        _react2.default.createElement(
-	          'tbody',
-	          null,
-	          this.props.weather.cities.map(this.renderCityWeather)
+	        weather.cities.length > 0 && _react2.default.createElement(
+	          'button',
+	          {
+	            className: 'btn btn-warning',
+	            style: { float: 'right' },
+	            onClick: function onClick() {
+	              return clearWeather();
+	            }
+	          },
+	          'Clear'
 	        )
 	      );
 	    }
@@ -22497,7 +22532,11 @@
 	  };
 	}
 
-	exports.default = (0, _reactRedux.connect)(mapStateToProps)(WeatherList);
+	function mapDispatchToProps(dispatch) {
+	  return (0, _redux.bindActionCreators)({ clearWeather: _index.clearWeather }, dispatch);
+	}
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(WeatherList);
 
 /***/ },
 /* 203 */
