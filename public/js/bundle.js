@@ -22422,17 +22422,17 @@
 	        _react2.default.createElement(
 	          'td',
 	          null,
-	          _react2.default.createElement(_SparkLineChart2.default, { data: temps, color: 'red' })
+	          _react2.default.createElement(_SparkLineChart2.default, { data: temps, color: 'red', units: 'K' })
 	        ),
 	        _react2.default.createElement(
 	          'td',
 	          null,
-	          _react2.default.createElement(_SparkLineChart2.default, { data: humidities, color: 'orange' })
+	          _react2.default.createElement(_SparkLineChart2.default, { data: pressures, color: 'blue', units: 'hPa' })
 	        ),
 	        _react2.default.createElement(
 	          'td',
 	          null,
-	          _react2.default.createElement(_SparkLineChart2.default, { data: pressures, color: 'blue' })
+	          _react2.default.createElement(_SparkLineChart2.default, { data: humidities, color: 'orange', units: '%' })
 	        )
 	      );
 	    }
@@ -22458,17 +22458,17 @@
 	            _react2.default.createElement(
 	              'th',
 	              null,
-	              'Temperature'
+	              'Temperature (K)'
 	            ),
 	            _react2.default.createElement(
 	              'th',
 	              null,
-	              'Pressure'
+	              'Pressure(hPA)'
 	            ),
 	            _react2.default.createElement(
 	              'th',
 	              null,
-	              'Humidity'
+	              'Humidity(%)'
 	            )
 	          )
 	        ),
@@ -23211,11 +23211,29 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	function average(data) {
+
+	  return (data.reduce(function (a, b) {
+	    return a + b;
+	  }, 0) / data.length).toFixed(2);
+	}
 	var SparkLineChart = function SparkLineChart(props) {
 	  return _react2.default.createElement(
-	    _reactSparklines.Sparklines,
-	    { height: 120, width: 180, data: props.data },
-	    _react2.default.createElement(_reactSparklines.SparklinesLine, { color: props.color })
+	    'div',
+	    null,
+	    _react2.default.createElement(
+	      _reactSparklines.Sparklines,
+	      { height: 120, width: 180, data: props.data },
+	      _react2.default.createElement(_reactSparklines.SparklinesLine, { color: props.color }),
+	      _react2.default.createElement(_reactSparklines.SparklinesReferenceLine, { type: 'avg' })
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      null,
+	      average(props.data),
+	      ' ',
+	      props.units
+	    )
 	  );
 	};
 
