@@ -4,7 +4,7 @@ This is a GraphQL server for the OpenWeatherMap API for the 5 Day / 3 hour forec
 
 I did this to get more familiar with GraphQL.  
 
-The app accessing the GraphQL server is created by no surprise, React with Redux.
+The app accessing the GraphQL server is created with no surprise - React with Redux.
 
 To use this, I expect you to have babel installed globally because the npm start command doesn't look for it locally.
 
