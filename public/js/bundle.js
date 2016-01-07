@@ -21060,7 +21060,7 @@
 /* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -21095,8 +21095,13 @@
 	        cities: []
 	      });
 	    case _index.DELETE_CITY:
-	      console.log("trying to be deleted", action.id);
-	      return state;
+	      var cityId = state.cities.findIndex(function (cityWeather) {
+	        return cityWeather.city.id === action.id;
+	      });
+
+	      return Object.assign({}, state, {
+	        cities: [].concat(_toConsumableArray(state.cities.slice(0, cityId)), _toConsumableArray(state.cities.slice(cityId + 1)))
+	      });
 	    default:
 	      return state;
 	  }

@@ -22,8 +22,11 @@ function weather(state = initialState, action) {
       cities: []
     });
   case DELETE_CITY:
-    console.log("trying to be deleted", action.id);
-    return state;
+    const cityId = state.cities.findIndex(cityWeather => cityWeather.city.id === action.id );
+
+    return Object.assign({}, state, {
+      cities: [...state.cities.slice(0, cityId), ...state.cities.slice(cityId + 1)]
+    });
   default:
     return state;
   }
