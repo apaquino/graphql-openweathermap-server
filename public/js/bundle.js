@@ -22431,7 +22431,7 @@
 	        _react2.default.createElement(
 	          'td',
 	          null,
-	          _react2.default.createElement(_SparkLineChart2.default, { data: temps, color: 'red', units: 'F' })
+	          _react2.default.createElement(_SparkLineChart2.default, { data: temps, color: 'red', units: '°F' })
 	        ),
 	        _react2.default.createElement(
 	          'td',
@@ -22540,6 +22540,7 @@
 	    _react2.default.createElement(
 	      'div',
 	      null,
+	      'Avgerage: ',
 	      average(props.data),
 	      ' ',
 	      props.units
