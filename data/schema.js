@@ -69,6 +69,18 @@ const mainType = new GraphQLObjectType({
     grnd_level: { type: GraphQLFloat },
     humidity: { type: GraphQLInt },
     temp_kf: { type: GraphQLFloat},
+    temp_f: {
+      type: GraphQLFloat,
+      resolve: (obj) => {
+        return ((obj.temp * 9/5) - 459.67).toFixed(2);
+      }
+    },
+    temp_c: {
+      type: GraphQLFloat,
+      resolve: (obj) => {
+        return (obj.temp - 273.15).toFixed(2);
+      }
+    },
   }),
 });
 
