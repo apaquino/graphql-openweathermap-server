@@ -22270,8 +22270,17 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(_SearchBar2.default, null),
-	        _react2.default.createElement(_WeatherList2.default, null)
+	        _react2.default.createElement(
+	          'nav',
+	          { className: 'navbar navbar-fixed-top navbar-dark bg-primary' },
+	          '5 Day Weather Forecast'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { style: { padding: '3rem 1.5rem' } },
+	          _react2.default.createElement(_SearchBar2.default, null),
+	          _react2.default.createElement(_WeatherList2.default, null)
+	        )
 	      );
 	    }
 	  }]);
