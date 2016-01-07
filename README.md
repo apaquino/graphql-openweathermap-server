@@ -99,6 +99,33 @@ query {
 // now the developer doesn't need to calculate that if they need it ... they just ask for it.
 ```
 
+In the sample app included in this repo, it does not need most of those fields.  Normally, the app still needs to download all that information to the client.  That is not even all the possible fields that come with the API.  You can also alias to match the prop names so you can use ES6/2015 object notation shortcuts.
+
+Here is what the sample app gets.  It is much less than the what the API gives you using traditional REST calls.
+
+```
+query:
+{
+  weatherForecast(city:"${term}") {
+    city {
+      id,
+      name,
+      coord{
+        lat,
+        lng: lon
+      }
+    },
+    list {
+      main {
+        temp_f,
+        pressure,
+        humidity
+      }
+    }
+  }
+}
+```
+
 I plan to add other query fields in the future and split up the code as it gets bigger.
 
 Also, I will add descriptions to the fields and types so graphiql can automatically document it.
