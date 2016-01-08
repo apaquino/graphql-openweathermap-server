@@ -22559,6 +22559,11 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	var propTypes = {
+	  cityData: _react.PropTypes.object.isRequired,
+	  deleteCity: _react.PropTypes.func
+	};
+
 	var WeatherListItem = function WeatherListItem(_ref) {
 	  var cityData = _ref.cityData;
 	  var deleteCity = _ref.deleteCity;
@@ -22615,6 +22620,8 @@
 	  );
 	};
 
+	WeatherListItem.propTypes = propTypes;
+
 	exports.default = WeatherListItem;
 
 /***/ },
@@ -22641,6 +22648,12 @@
 	  }, 0) / data.length).toFixed(2);
 	}
 
+	var propTypes = {
+	  data: _react.PropTypes.array.isRequired,
+	  color: _react.PropTypes.string,
+	  units: _react.PropTypes.string
+	};
+
 	var SparkLineChart = function SparkLineChart(_ref) {
 	  var data = _ref.data;
 	  var color = _ref.color;
@@ -22665,6 +22678,8 @@
 	    )
 	  );
 	};
+
+	SparkLineChart.propTypes = propTypes;
 
 	exports.default = SparkLineChart;
 

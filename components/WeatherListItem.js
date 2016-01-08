@@ -1,6 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import SparkLineChart from './SparkLineChart';
 import GoogleCityMap from './GoogleCityMap';
+
+const propTypes = {
+    cityData: PropTypes.object.isRequired,
+    deleteCity: PropTypes.func,
+};
 
 const WeatherListItem = ({cityData, deleteCity}) => {
 
@@ -24,5 +29,7 @@ const WeatherListItem = ({cityData, deleteCity}) => {
     </tr>
   )
 };
+
+WeatherListItem.propTypes = propTypes;
 
 export default WeatherListItem;

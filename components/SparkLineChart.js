@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines';
 
 function average(data) {
   return (data.reduce((a, b) => a + b, 0) / data.length).toFixed(2);
 }
+
+const propTypes = {
+  data: PropTypes.array.isRequired,
+  color: PropTypes.string,
+  units: PropTypes.string,
+};
 
 const SparkLineChart = ({data, color, units}) => {
     return (
@@ -16,5 +22,7 @@ const SparkLineChart = ({data, color, units}) => {
       </div>
     )
 }
+
+SparkLineChart.propTypes = propTypes;
 
 export default SparkLineChart;
