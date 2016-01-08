@@ -14,6 +14,7 @@ import axios from 'axios';
 import YTSearch from 'youtube-api-search';
 import API_KEYS from "../KEYS/index";
 
+// helper for YTSearch so it will be a promise based.
 function YTSearchPromisified(term) {
   return new Promise(
     function(resolve, reject) {
