@@ -23378,6 +23378,11 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	var propTypes = {
+	  lat: _react.PropTypes.number.isRequired,
+	  lng: _react.PropTypes.number.isRequired
+	};
+
 	var GoogleCityMap = function GoogleCityMap(_ref) {
 	  var lat = _ref.lat;
 	  var lng = _ref.lng;
@@ -23394,6 +23399,8 @@
 	    })
 	  });
 	};
+
+	GoogleCityMap.propTypes = propTypes;
 
 	exports.default = GoogleCityMap;
 

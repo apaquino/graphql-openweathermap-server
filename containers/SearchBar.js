@@ -10,6 +10,7 @@ class SearchBar extends Component {
       term: ""
     };
   }
+  
   static propTypes = {
     fetchWeather: PropTypes.func,
     isLoading: PropTypes.bool

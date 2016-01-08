@@ -1,5 +1,10 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { GoogleMapLoader, GoogleMap } from "react-google-maps";
+
+const propTypes = {
+  lat: PropTypes.number.isRequired,
+  lng: PropTypes.number.isRequired,
+};
 
 const GoogleCityMap = ({lat, lng}) => {
   return (
@@ -20,5 +25,7 @@ const GoogleCityMap = ({lat, lng}) => {
     />
   )
 }
+
+GoogleCityMap.propTypes = propTypes;
 
 export default GoogleCityMap;
