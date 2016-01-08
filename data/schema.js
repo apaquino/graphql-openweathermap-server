@@ -18,8 +18,7 @@ import API_KEYS from "../KEYS/index";
 
 // helper for YTSearch so it will be a promise based.
 function YTSearchPromisified(term) {
-  return new Promise(
-    function(resolve, reject) {
+  return new Promise((resolve, reject) => {
       YTSearch({key: API_KEYS.youtube, term}, (response) => {
         resolve(response);
       });
