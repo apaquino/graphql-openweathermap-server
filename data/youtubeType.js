@@ -14,6 +14,7 @@ const youtubeType = new GraphQLObjectType({
   name: "Youtube",
   description: "Youtube search results",
   fields: () => ({
+    kind: { type: GraphQLString },
     etag: { type: GraphQLString },
     id: { type: idType},
     snippet: { type: snippitType },

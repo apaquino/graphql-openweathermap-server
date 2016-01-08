@@ -10,6 +10,8 @@ import {
   GraphQLFloat
 } from 'graphql';
 
+import weatherForecastType from './weatherForecastType';
+import youtubeType from './youtubeType';
 import axios from 'axios';
 import YTSearch from 'youtube-api-search';
 import API_KEYS from "../KEYS/index";
@@ -24,9 +26,6 @@ function YTSearchPromisified(term) {
     }
   );
 }
-
-import weatherForecastType from './weatherForecastType';
-import youtubeType from './youtubeType';
 
 const query = new GraphQLObjectType({
   name: 'Query',
@@ -54,7 +53,8 @@ const query = new GraphQLObjectType({
         }
       },
       resolve: (_,{term}) => {
-        return YTSearchPromisified(term).then(data => data);
+        return YTSearchPromisified(term)
+                 .then(data => data);
       },
     }
   }),
