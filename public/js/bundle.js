@@ -22510,6 +22510,12 @@
 	  return WeatherList;
 	}(_react.Component);
 
+	WeatherList.propTypes = {
+	  clearWeather: _react.PropTypes.func,
+	  deleteCity: _react.PropTypes.func,
+	  weather: _react.PropTypes.object.isRequired
+	};
+
 	function mapStateToProps(_ref) {
 	  var weather = _ref.weather;
 

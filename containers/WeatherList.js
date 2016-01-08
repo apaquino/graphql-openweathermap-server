@@ -1,13 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { clearWeather, deleteCity } from '../actions/index';
 import WeatherListItem from '../components/WeatherListItem';
 
 class WeatherList extends Component {
+  static propTypes = {
+    clearWeather: PropTypes.func,
+    deleteCity: PropTypes.func,
+    weather: PropTypes.object.isRequired,
+  };
+
   render() {
     const { weather, clearWeather, deleteCity } = this.props;
-
+    
     return (
       <div>
         <table className="table table-hover">
