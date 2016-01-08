@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from  'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchWeather } from '../actions/index';
@@ -10,6 +10,10 @@ class SearchBar extends Component {
       term: ""
     };
   }
+  static propTypes = {
+    fetchWeather: PropTypes.func,
+    isLoading: PropTypes.bool
+  };
 
   onFormSubmit = (e) => {
     e.preventDefault();

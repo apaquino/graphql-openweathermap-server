@@ -22382,6 +22382,11 @@
 	  return SearchBar;
 	}(_react.Component);
 
+	SearchBar.propTypes = {
+	  fetchWeather: _react.PropTypes.func,
+	  isLoading: _react.PropTypes.bool
+	};
+
 	function mapStateToProps(state) {
 	  return {
 	    isLoading: state.weather.isLoading
