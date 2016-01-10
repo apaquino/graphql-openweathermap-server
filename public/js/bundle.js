@@ -21095,7 +21095,6 @@
 	      });
 	    case _index.CLEAR_WEATHER:
 	      return Object.assign({}, state, {
-	        isLoading: false,
 	        cities: state.cities.clear()
 	      });
 	    case _index.DELETE_CITY:

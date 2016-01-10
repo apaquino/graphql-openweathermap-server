@@ -19,7 +19,6 @@ function weather(state = initialState, action) {
     });
   case CLEAR_WEATHER:
     return Object.assign({}, state, {
-      isLoading: false,
       cities: state.cities.clear()
     });
   case DELETE_CITY:
