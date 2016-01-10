@@ -26,8 +26,14 @@ function YTSearchPromisified(term) {
   );
 }
 
-const query = new GraphQLObjectType({
-  name: 'Query',
+// Root query object for Relay pattern
+
+// private empty object for storetype to resolve
+
+let _store = {};
+
+const storeType = new GraphQLObjectType({
+  name: 'Store',
   fields: () => ({
     weatherForecast: {
       type: weatherForecastType,
@@ -58,6 +64,19 @@ const query = new GraphQLObjectType({
                  .then(data => data);
       },
     }
+  }),
+});
+
+const query = new GraphQLObjectType({
+  name: 'Query',
+  fields: () => ({
+    store: {
+      type: storeType,
+      description: 'Root viewer query object',
+      resolve: () => {
+        return _store;
+      }
+    },
   }),
 });
 

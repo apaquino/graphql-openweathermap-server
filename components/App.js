@@ -2,6 +2,8 @@ import React from 'react';
 import SearchBar from '../containers/SearchBar';
 import WeatherList from '../containers/WeatherList';
 
+import Relay from 'react-relay';
+
 const App = () => {
     return (
       <div>

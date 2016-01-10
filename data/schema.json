@@ -13,6 +13,29 @@
           "description": null,
           "fields": [
             {
+              "name": "store",
+              "description": "Root viewer query object",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Store",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Store",
+          "description": null,
+          "fields": [
+            {
               "name": "weatherForecast",
               "description": "Weather forecast for the next 5 days / 3 hours",
               "args": [
