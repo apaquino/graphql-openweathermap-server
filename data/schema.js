@@ -31,6 +31,7 @@ const query = new GraphQLObjectType({
   fields: () => ({
     weatherForecast: {
       type: weatherForecastType,
+      description: 'Weather forecast for the next 5 days / 3 hours',
       args: {
         city: {
           type: new GraphQLNonNull(GraphQLString)
@@ -46,6 +47,7 @@ const query = new GraphQLObjectType({
     },
     youtube: {
       type: new GraphQLList(youtubeType),
+      description: 'Youtube Search using API v3',
       args: {
         term: {
           type: new GraphQLNonNull(GraphQLString)

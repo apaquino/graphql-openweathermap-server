@@ -13,7 +13,7 @@ class WeatherList extends Component {
 
   render() {
     const { weather, clearWeather, deleteCity } = this.props;
-    
+
     return (
       <div>
         <table className="table table-hover">
