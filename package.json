@@ -25,6 +25,7 @@
     "express": "^4.13.3",
     "express-graphql": "^0.4.5",
     "graphql": "^0.4.14",
+    "immutable": "^3.7.6",
     "react": "^0.14.5",
     "react-dom": "^0.14.5",
     "react-google-maps": "^4.7.1",
