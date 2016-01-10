@@ -22642,11 +22642,11 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function average(data) {
+	var average = function average(data) {
 	  return (data.reduce(function (a, b) {
 	    return a + b;
 	  }, 0) / data.length).toFixed(2);
-	}
+	};
 
 	var propTypes = {
 	  data: _react.PropTypes.array.isRequired,
