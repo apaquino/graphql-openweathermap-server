@@ -28038,11 +28038,9 @@
 	    key: 'render',
 	    value: function render() {
 	      var _props = this.props;
-	      var weather = _props.weather;
+	      var cities = _props.cities;
 	      var clearWeather = _props.clearWeather;
 	      var deleteCity = _props.deleteCity;
-	
-	      var cities = weather.get('cities');
 	
 	      return _react2.default.createElement(
 	        'div',
@@ -28119,7 +28117,8 @@
 	  var weather = _ref.weather;
 	
 	  return {
-	    weather: weather
+	    cities: weather.get('cities')
+	
 	  };
 	}
 	

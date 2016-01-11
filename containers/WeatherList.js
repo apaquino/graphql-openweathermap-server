@@ -12,8 +12,7 @@ class WeatherList extends Component {
   };
 
   render() {
-    const { weather, clearWeather, deleteCity } = this.props;
-    const cities = weather.get('cities');
+    const { cities, clearWeather, deleteCity } = this.props;
 
     return (
       <div>
@@ -53,7 +52,8 @@ class WeatherList extends Component {
 
 function mapStateToProps({weather}) {
   return {
-    weather
+    cities: weather.get('cities')
+
   }
 }
 
