@@ -21620,10 +21620,10 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var initialState = {
+	var initialState = _immutable2.default.Map({
 	  isLoading: false,
 	  cities: _immutable2.default.List()
-	};
+	});
 	
 	function weather() {
 	  var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
@@ -21631,26 +21631,16 @@
 	
 	  switch (action.type) {
 	    case _index.REQUEST_WEATHER:
-	      return Object.assign({}, state, {
-	        isLoading: true
-	      });
+	      return state.set('isLoading', true);
 	    case _index.RECEIVE_WEATHER:
-	      return Object.assign({}, state, {
-	        isLoading: false,
-	        cities: state.cities.unshift(action.city)
-	      });
+	      return state.set('isLoading', false).set('cities', state.get('cities').unshift(action.city));
 	    case _index.CLEAR_WEATHER:
-	      return Object.assign({}, state, {
-	        cities: state.cities.clear()
-	      });
+	      return state.set('cities', state.get('cities').clear());
 	    case _index.DELETE_CITY:
-	      var cityId = state.cities.findIndex(function (cityWeather) {
-	        return cityWeather.city.id === action.id;
+	      var cityId = state.get('cities').findIndex(function (cityEl) {
+	        return cityEl.city.id === action.id;
 	      });
-	
-	      return Object.assign({}, state, {
-	        cities: state.cities.delete(cityId)
-	      });
+	      return state.set('cities', state.get('cities').delete(cityId));
 	    default:
 	      return state;
 	  }
@@ -27988,7 +27978,7 @@
 	
 	function mapStateToProps(state) {
 	  return {
-	    isLoading: state.weather.isLoading
+	    isLoading: state.weather.get('isLoading')
 	  };
 	}
 	
@@ -28052,6 +28042,8 @@
 	      var clearWeather = _props.clearWeather;
 	      var deleteCity = _props.deleteCity;
 	
+	      var cities = weather.get('cities');
+	
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -28090,7 +28082,7 @@
 	          _react2.default.createElement(
 	            'tbody',
 	            null,
-	            weather.cities.map(function (cityData) {
+	            cities.map(function (cityData) {
 	              return _react2.default.createElement(_WeatherListItem2.default, {
 	                key: cityData.city.id,
 	                cityData: cityData,
@@ -28099,7 +28091,7 @@
 	            })
 	          )
 	        ),
-	        weather.cities.length > 0 && _react2.default.createElement(
+	        cities.length > 0 && _react2.default.createElement(
 	          'button',
 	          {
 	            className: 'btn btn-warning',
@@ -28108,7 +28100,7 @@
 	              return clearWeather();
 	            }
 	          },
-	          weather.cities.length > 1 ? "Clear All" : "Clear"
+	          cities.length > 1 ? "Clear All" : "Clear"
 	        )
 	      );
 	    }

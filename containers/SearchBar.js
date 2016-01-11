@@ -10,7 +10,7 @@ class SearchBar extends Component {
       term: ""
     };
   }
-  
+
   static propTypes = {
     fetchWeather: PropTypes.func,
     isLoading: PropTypes.bool
@@ -43,7 +43,7 @@ class SearchBar extends Component {
 
 function mapStateToProps(state) {
   return {
-    isLoading: state.weather.isLoading
+    isLoading: state.weather.get('isLoading')
   }
 }
 

@@ -13,6 +13,7 @@ class WeatherList extends Component {
 
   render() {
     const { weather, clearWeather, deleteCity } = this.props;
+    const cities = weather.get('cities');
 
     return (
       <div>
@@ -27,7 +28,7 @@ class WeatherList extends Component {
             </tr>
           </thead>
           <tbody>
-          {weather.cities.map(cityData => {
+          {cities.map(cityData => {
             return (<WeatherListItem
                       key={cityData.city.id}
                       cityData={cityData}
@@ -36,13 +37,13 @@ class WeatherList extends Component {
           })}
           </tbody>
         </table>
-        {weather.cities.length > 0 && (
+        {cities.length > 0 && (
           <button
             className="btn btn-warning"
             style={{float: 'right'}}
             onClick={() => clearWeather()}
           >
-            {weather.cities.length > 1 ? "Clear All" : "Clear"}
+            {cities.length > 1 ? "Clear All" : "Clear"}
           </button>
         )}
       </div>

@@ -1,32 +1,24 @@
 import { REQUEST_WEATHER, RECEIVE_WEATHER, CLEAR_WEATHER, DELETE_CITY } from '../actions/index';
 import Immutable from 'immutable';
 
-const initialState = {
+const initialState = Immutable.Map({
   isLoading: false,
   cities: Immutable.List()
-};
+});
 
 function weather(state = initialState, action) {
   switch (action.type) {
   case REQUEST_WEATHER:
-    return Object.assign({}, state, {
-      isLoading: true
-    });
+    return state.set('isLoading', true);
   case RECEIVE_WEATHER:
-    return Object.assign({}, state, {
-      isLoading: false,
-      cities: state.cities.unshift(action.city)
-    });
+    return state.set('isLoading', false)
+                .set('cities', state.get('cities').unshift(action.city));
   case CLEAR_WEATHER:
-    return Object.assign({}, state, {
-      cities: state.cities.clear()
-    });
+    return state.set('cities', state.get('cities').clear());
   case DELETE_CITY:
-    const cityId = state.cities.findIndex(cityWeather => cityWeather.city.id === action.id );
-
-    return Object.assign({}, state, {
-      cities: state.cities.delete(cityId)
-    });
+    const cityId = state.get('cities')
+                        .findIndex(cityEl => cityEl.city.id === action.id );
+    return state.set('cities', state.get('cities').delete(cityId));
   default:
     return state;
   }
