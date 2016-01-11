@@ -1,6 +1,8 @@
 # GraphQL Server for Open Weather Map API w/ sample React/Redux app.
 
 ### Update.  Added Youtube search API to the GraphQL server.  No app though, in progress.
+#### Update 2, used Immutable.js
+##### The logger and state is harder to read with Immutable but easier to maintain persistent data. IMHO
 
 This is a GraphQL server for the OpenWeatherMap API for the 5 Day / 3 hour forecast.
 
