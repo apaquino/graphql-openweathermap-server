@@ -1,3 +1,4 @@
 node_modules
 KEYS/index.js
 public/js/bundle.js
+public/js/bundle.js.map
