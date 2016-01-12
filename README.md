@@ -175,7 +175,9 @@ Also, I will add descriptions to the fields and types so graphiql can automatica
 Before you view the app, run the following command
 
 ```
-npm run devuild
+npm run devbuild
 ```
 
 To use view the weather app, open your browser and go to http://localhost:8888
+
+Working on other features/technologies on different branches.  
