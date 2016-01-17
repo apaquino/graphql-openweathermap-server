@@ -18,8 +18,49 @@ const weatherForecastType = new GraphQLObjectType({
     cnt: { type: GraphQLInt },
     city: { type: cityType },
     list: {type: new GraphQLList(listType)},
+    temp_f_avg: {
+      type: GraphQLFloat,
+      resolve: (obj) => {
+        const avgTemp = (obj.list.map(weather => weather.main.temp)
+                                .reduce((a, b) => a + b, 0)) / obj.list.length;
+        return _to_farenheit(avgTemp);
+      }
+    },
+    temp_c_avg: {
+      type: GraphQLFloat,
+      resolve: (obj) => {
+        const avgTemp = (obj.list.map(weather => weather.main.temp)
+                                .reduce((a, b) => a + b, 0)) / obj.list.length;
+        return _to_celsius(avgTemp);
+      }
+    },
+    pressure_avg: {
+      type: GraphQLFloat,
+      resolve: (obj) => {
+        const avgPressure = (obj.list.map(weather => weather.main.pressure)
+                                .reduce((a, b) => a + b, 0)) / obj.list.length;
+        return avgPressure.toFixed(2);
+      }
+    },
+    humidity_avg: {
+      type: GraphQLFloat,
+      resolve: (obj) => {
+        const avghumidity = (obj.list.map(weather => weather.main.humidity)
+                                .reduce((a, b) => a + b, 0)) / obj.list.length;
+        return avghumidity.toFixed(2);
+      }
+    },
   })
 });
+
+const _to_farenheit = (temp) => {
+  return ((temp * 9/5) - 459.67).toFixed(2);
+};
+
+const _to_celsius = (temp) => {
+  return (temp - 273.15).toFixed(2);
+};
+
 
 const cityType = new GraphQLObjectType({
   name: "City",
@@ -50,7 +91,7 @@ const listType = new GraphQLObjectType({
     main: { type: mainType },
     weather: { type: new GraphQLList(weatherListType) },
     wind: { type: windType },
-    clouds: { type: cloudsType },
+    clouds: { type: cloudsType }
   }),
 });
 
@@ -69,13 +110,13 @@ const mainType = new GraphQLObjectType({
     temp_f: {
       type: GraphQLFloat,
       resolve: (obj) => {
-        return ((obj.temp * 9/5) - 459.67).toFixed(2);
+        return _to_farenheit(obj.temp);
       }
     },
     temp_c: {
       type: GraphQLFloat,
       resolve: (obj) => {
-        return (obj.temp - 273.15).toFixed(2);
+        return _to_celsius(obj.temp);
       }
     },
   }),

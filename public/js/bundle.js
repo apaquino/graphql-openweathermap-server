@@ -21167,7 +21167,7 @@
 	  return function (dispatch) {
 	    dispatch(requestWeather(term));
 	    return _axios2.default.post('/graphql', {
-	      query: '\n              {\n                weatherForecast(city:"' + term + '") {\n                  city {\n                    id,\n                    name,\n                    coord{\n                      lat,\n                      lng: lon\n                    }\n                  },\n                  list {\n                    main {\n                      temp_f,\n                      pressure,\n                      humidity\n                    }\n                  }\n                }\n              }\n              '
+	      query: '\n              {\n                weatherForecast(city:"' + term + '") {\n                  temp_f_avg,\n                  pressure_avg,\n                  humidity_avg,\n                  city {\n                    id,\n                    name,\n                    coord{\n                      lat,\n                      lng: lon\n                    }\n                  },\n                  list {\n                    main {\n                      temp_f,\n                      pressure,\n                      humidity\n                    }\n                  }\n                }\n              }\n              '
 	    }).then(function (response) {
 	      // response from axios comes with data object and so does graphql
 	      dispatch(receiveWeather(response.data.data.weatherForecast));
@@ -22592,17 +22592,17 @@
 	    _react2.default.createElement(
 	      'td',
 	      null,
-	      _react2.default.createElement(_SparkLineChart2.default, { data: temps, color: 'red', units: '°F' })
+	      _react2.default.createElement(_SparkLineChart2.default, { data: temps, color: 'red', avgData: cityData.temp_f_avg, un: true, its: '°F' })
 	    ),
 	    _react2.default.createElement(
 	      'td',
 	      null,
-	      _react2.default.createElement(_SparkLineChart2.default, { data: pressures, color: 'blue', units: 'hPa' })
+	      _react2.default.createElement(_SparkLineChart2.default, { data: pressures, color: 'blue', avgData: cityData.pressure_avg, units: 'hPa' })
 	    ),
 	    _react2.default.createElement(
 	      'td',
 	      null,
-	      _react2.default.createElement(_SparkLineChart2.default, { data: humidities, color: 'orange', units: '%' })
+	      _react2.default.createElement(_SparkLineChart2.default, { data: humidities, color: 'orange', avgData: cityData.humidity_avg, units: '%' })
 	    ),
 	    _react2.default.createElement(
 	      'td',
@@ -22642,22 +22642,18 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var average = function average(data) {
-	  return (data.reduce(function (a, b) {
-	    return a + b;
-	  }, 0) / data.length).toFixed(2);
-	};
-
 	var propTypes = {
 	  data: _react.PropTypes.array.isRequired,
 	  color: _react.PropTypes.string,
-	  units: _react.PropTypes.string
+	  units: _react.PropTypes.string,
+	  avgData: _react.PropTypes.number
 	};
 
 	var SparkLineChart = function SparkLineChart(_ref) {
 	  var data = _ref.data;
 	  var color = _ref.color;
 	  var units = _ref.units;
+	  var avgData = _ref.avgData;
 
 	  return _react2.default.createElement(
 	    'div',
@@ -22672,7 +22668,7 @@
 	      'div',
 	      null,
 	      'Avgerage: ',
-	      average(data),
+	      avgData,
 	      ' ',
 	      units
 	    )

@@ -39,6 +39,9 @@ export function fetchWeather(term) {
               query: `
               {
                 weatherForecast(city:"${term}") {
+                  temp_f_avg,
+                  pressure_avg,
+                  humidity_avg,
                   city {
                     id,
                     name,
