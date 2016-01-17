@@ -12,6 +12,7 @@ import {
 
 const weatherForecastType = new GraphQLObjectType({
   name: "WeatherForecast",
+  description: "Fields and iterable objects with weather data",
   fields: () => ({
     cod: { type: GraphQLString },
     message: { type: GraphQLInt },
