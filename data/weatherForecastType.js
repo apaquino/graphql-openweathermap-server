@@ -23,7 +23,7 @@ const weatherForecastType = new GraphQLObjectType({
       type: GraphQLFloat,
       resolve: (obj) => {
         const avgTemp = (obj.list.map(weather => weather.main.temp)
-                                .reduce((a, b) => a + b, 0)) / obj.list.length;
+                                 .reduce((a, b) => a + b, 0)) / obj.list.length;
         return _to_farenheit(avgTemp);
       }
     },
@@ -31,7 +31,7 @@ const weatherForecastType = new GraphQLObjectType({
       type: GraphQLFloat,
       resolve: (obj) => {
         const avgTemp = (obj.list.map(weather => weather.main.temp)
-                                .reduce((a, b) => a + b, 0)) / obj.list.length;
+                                 .reduce((a, b) => a + b, 0)) / obj.list.length;
         return _to_celsius(avgTemp);
       }
     },
@@ -39,7 +39,7 @@ const weatherForecastType = new GraphQLObjectType({
       type: GraphQLFloat,
       resolve: (obj) => {
         const avgPressure = (obj.list.map(weather => weather.main.pressure)
-                                .reduce((a, b) => a + b, 0)) / obj.list.length;
+                                     .reduce((a, b) => a + b, 0)) / obj.list.length;
         return avgPressure.toFixed(2);
       }
     },
@@ -47,7 +47,7 @@ const weatherForecastType = new GraphQLObjectType({
       type: GraphQLFloat,
       resolve: (obj) => {
         const avghumidity = (obj.list.map(weather => weather.main.humidity)
-                                .reduce((a, b) => a + b, 0)) / obj.list.length;
+                                     .reduce((a, b) => a + b, 0)) / obj.list.length;
         return avghumidity.toFixed(2);
       }
     },
