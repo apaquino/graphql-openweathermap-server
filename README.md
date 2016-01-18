@@ -130,7 +130,7 @@ query:
 }
 ```
 
-**UPDATE**.  I have added more fields to the GraphQL schema to make the react components to less work.  I added fields that only bring in the array data for the fields I need and calculates the averages for me.  I no longer need to map over an array of objects to get the data I need or do I need to calculate the averages for the charts anymore.  I just pass in data and it is used as-is.  The components are dumber and that is a good thing.
+**UPDATE**.  I have added more fields to the GraphQL schema to make the react components do less work.  I added fields that only bring in the array data for the fields I need and calculates the averages for me.  I no longer need to map over an array of objects to get the data I need or calculate the averages for the charts.  I just pass in data and it is used as-is.  The components are dumber and that is a good thing.
 
 ```
 query: `
