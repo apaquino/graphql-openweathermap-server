@@ -51,6 +51,24 @@ const weatherForecastType = new GraphQLObjectType({
         return avghumidity.toFixed(2);
       }
     },
+    pressure_data: {
+      type: new GraphQLList(GraphQLFloat),
+      resolve: (obj) => {
+        return obj.list.map(weather => weather.main.pressure);
+      }
+    },
+    humidity_data: {
+      type: new GraphQLList(GraphQLFloat),
+      resolve: (obj) => {
+        return obj.list.map(weather => weather.main.humidity);
+      }
+    },
+    temp_f_data: {
+      type: new GraphQLList(GraphQLFloat),
+      resolve: (obj) => {
+        return obj.list.map(weather => _to_farenheit(weather.main.temp));
+      }
+    },
   })
 });
 
@@ -61,7 +79,6 @@ const _to_farenheit = (temp) => {
 const _to_celsius = (temp) => {
   return (temp - 273.15).toFixed(2);
 };
-
 
 const cityType = new GraphQLObjectType({
   name: "City",
