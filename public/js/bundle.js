@@ -21167,7 +21167,7 @@
 	  return function (dispatch) {
 	    dispatch(requestWeather(term));
 	    return _axios2.default.post('/graphql', {
-	      query: '\n              {\n                weatherForecast(city:"' + term + '") {\n                  temp_f_avg,\n                  pressure_avg,\n                  humidity_avg,\n                  city {\n                    id,\n                    name,\n                    coord{\n                      lat,\n                      lng: lon\n                    }\n                  },\n                  list {\n                    main {\n                      temp_f,\n                      pressure,\n                      humidity\n                    }\n                  }\n                }\n              }\n              '
+	      query: '\n              {\n                weatherForecast(city:"' + term + '") {\n                  city {\n                    id,\n                    name,\n                    coord{\n                      lat,\n                      lng: lon\n                    }\n                  },\n                  pressure_data,\n                  humidity_data,\n                  temp_f_data,\n                  temp_f_avg,\n                  pressure_avg,\n                  humidity_avg,\n                }\n              }\n              '
 	    }).then(function (response) {
 	      // response from axios comes with data object and so does graphql
 	      dispatch(receiveWeather(response.data.data.weatherForecast));
@@ -22567,16 +22567,9 @@
 	var WeatherListItem = function WeatherListItem(_ref) {
 	  var cityData = _ref.cityData;
 	  var deleteCity = _ref.deleteCity;
-
-	  var temps = cityData.list.map(function (weather) {
-	    return weather.main.temp_f;
-	  });
-	  var pressures = cityData.list.map(function (weather) {
-	    return weather.main.pressure;
-	  });
-	  var humidities = cityData.list.map(function (weather) {
-	    return weather.main.humidity;
-	  });
+	  var pressure_data = cityData.pressure_data;
+	  var humidity_data = cityData.humidity_data;
+	  var temp_f_data = cityData.temp_f_data;
 	  var _cityData$city$coord = cityData.city.coord;
 	  var lat = _cityData$city$coord.lat;
 	  var lng = _cityData$city$coord.lng;
@@ -22592,17 +22585,17 @@
 	    _react2.default.createElement(
 	      'td',
 	      null,
-	      _react2.default.createElement(_SparkLineChart2.default, { data: temps, color: 'red', avgData: cityData.temp_f_avg, un: true, its: '°F' })
+	      _react2.default.createElement(_SparkLineChart2.default, { data: temp_f_data, color: 'red', avgData: cityData.temp_f_avg, un: true, its: '°F' })
 	    ),
 	    _react2.default.createElement(
 	      'td',
 	      null,
-	      _react2.default.createElement(_SparkLineChart2.default, { data: pressures, color: 'blue', avgData: cityData.pressure_avg, units: 'hPa' })
+	      _react2.default.createElement(_SparkLineChart2.default, { data: pressure_data, color: 'blue', avgData: cityData.pressure_avg, units: 'hPa' })
 	    ),
 	    _react2.default.createElement(
 	      'td',
 	      null,
-	      _react2.default.createElement(_SparkLineChart2.default, { data: humidities, color: 'orange', avgData: cityData.humidity_avg, units: '%' })
+	      _react2.default.createElement(_SparkLineChart2.default, { data: humidity_data, color: 'orange', avgData: cityData.humidity_avg, units: '%' })
 	    ),
 	    _react2.default.createElement(
 	      'td',
