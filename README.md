@@ -130,6 +130,31 @@ query:
 }
 ```
 
+**UPDATE**.  I have added more fields to the GraphQL schema to make the react components to less work.  I added fields that only bring in the array data for the fields I need and calculates the averages for me.  I no longer need to map over an array of objects to get the data I need or do I need to calculate the averages for the charts anymore.  I just pass in data and it is used as-is.  The components are dumber and that is a good thing.
+
+```
+query: `
+{
+  weatherForecast(city:"${term}") {
+    city {
+      id,
+      name,
+      coord{
+        lat,
+        lng: lon
+      }
+    },
+    pressure_data,
+    humidity_data,
+    temp_f_data,
+    temp_f_avg,
+    pressure_avg,
+    humidity_avg,
+  }
+}
+`
+```
+
 Here is a sample of all the available fields for the youtube search API.
 
 ```
