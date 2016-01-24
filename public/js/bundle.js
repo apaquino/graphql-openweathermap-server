@@ -22560,7 +22560,14 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var propTypes = {
-	  cityData: _react.PropTypes.object.isRequired,
+	  cityData: _react.PropTypes.shape({
+	    pressure_data: _react.PropTypes.arrayOf(_react.PropTypes.number),
+	    humidity_data: _react.PropTypes.arrayOf(_react.PropTypes.number),
+	    temp_f_data: _react.PropTypes.arrayOf(_react.PropTypes.number),
+	    temp_f_avg: _react.PropTypes.number,
+	    pressure_avg: _react.PropTypes.number,
+	    humidity_avg: _react.PropTypes.number
+	  }).isRequired,
 	  deleteCity: _react.PropTypes.func
 	};
 

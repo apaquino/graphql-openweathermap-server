@@ -3,7 +3,14 @@ import SparkLineChart from './SparkLineChart';
 import GoogleCityMap from './GoogleCityMap';
 
 const propTypes = {
-    cityData: PropTypes.object.isRequired,
+    cityData: PropTypes.shape({
+      pressure_data: PropTypes.arrayOf(PropTypes.number),
+      humidity_data: PropTypes.arrayOf(PropTypes.number),
+      temp_f_data: PropTypes.arrayOf(PropTypes.number),
+      temp_f_avg: PropTypes.number,
+      pressure_avg: PropTypes.number,
+      humidity_avg: PropTypes.number,
+    }).isRequired,
     deleteCity: PropTypes.func,
 };
 
