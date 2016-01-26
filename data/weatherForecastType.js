@@ -10,6 +10,14 @@ import {
   GraphQLFloat
 } from 'graphql';
 
+const _to_farenheit = (temp) => {
+  return ((temp * 9/5) - 459.67).toFixed(2);
+};
+
+const _to_celsius = (temp) => {
+  return (temp - 273.15).toFixed(2);
+};
+
 const weatherForecastType = new GraphQLObjectType({
   name: "WeatherForecast",
   fields: () => ({
@@ -18,6 +26,56 @@ const weatherForecastType = new GraphQLObjectType({
     cnt: { type: GraphQLInt },
     city: { type: cityType },
     list: {type: new GraphQLList(listType)},
+    temp_f_avg: {
+      type: GraphQLFloat,
+      resolve: (obj) => {
+        const avgTemp = (obj.list.map(weather => weather.main.temp)
+                                 .reduce((a, b) => a + b, 0)) / obj.list.length;
+        return _to_farenheit(avgTemp);
+      }
+    },
+    temp_c_avg: {
+      type: GraphQLFloat,
+      resolve: (obj) => {
+        const avgTemp = (obj.list.map(weather => weather.main.temp)
+                                 .reduce((a, b) => a + b, 0)) / obj.list.length;
+        return _to_celsius(avgTemp);
+      }
+    },
+    pressure_avg: {
+      type: GraphQLFloat,
+      resolve: (obj) => {
+        const avgPressure = (obj.list.map(weather => weather.main.pressure)
+                                     .reduce((a, b) => a + b, 0)) / obj.list.length;
+        return avgPressure.toFixed(2);
+      }
+    },
+    humidity_avg: {
+      type: GraphQLFloat,
+      resolve: (obj) => {
+        const avghumidity = (obj.list.map(weather => weather.main.humidity)
+                                     .reduce((a, b) => a + b, 0)) / obj.list.length;
+        return avghumidity.toFixed(2);
+      }
+    },
+    pressure_data: {
+      type: new GraphQLList(GraphQLFloat),
+      resolve: (obj) => {
+        return obj.list.map(weather => weather.main.pressure);
+      }
+    },
+    humidity_data: {
+      type: new GraphQLList(GraphQLFloat),
+      resolve: (obj) => {
+        return obj.list.map(weather => weather.main.humidity);
+      }
+    },
+    temp_f_data: {
+      type: new GraphQLList(GraphQLFloat),
+      resolve: (obj) => {
+        return obj.list.map(weather => _to_farenheit(weather.main.temp));
+      }
+    },
   })
 });
 

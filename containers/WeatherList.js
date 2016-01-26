@@ -8,7 +8,7 @@ class WeatherList extends Component {
   static propTypes = {
     clearWeather: PropTypes.func,
     deleteCity: PropTypes.func,
-    weather: PropTypes.object.isRequired,
+    cities: PropTypes.object.isRequired,
   };
 
   render() {
@@ -53,7 +53,6 @@ class WeatherList extends Component {
 function mapStateToProps({weather}) {
   return {
     cities: weather.get('cities')
-
   }
 }
 

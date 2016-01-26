@@ -21709,7 +21709,7 @@
 	  return function (dispatch) {
 	    dispatch(requestWeather(term));
 	    return _axios2.default.post('/graphql', {
-	      query: '\n              {\n                weatherForecast(city:"' + term + '") {\n                  city {\n                    id,\n                    name,\n                    coord{\n                      lat,\n                      lng: lon\n                    }\n                  },\n                  list {\n                    main {\n                      temp_f,\n                      pressure,\n                      humidity\n                    }\n                  }\n                }\n              }\n              '
+	      query: '\n                {\n                  weatherForecast(city:"' + term + '") {\n                    city {\n                      id,\n                      name,\n                      coord{\n                        lat,\n                        lng: lon\n                      }\n                    },\n                    pressure_data,\n                    humidity_data,\n                    temp_f_data,\n                    temp_f_avg,\n                    pressure_avg,\n                    humidity_avg,\n                  }\n                }\n                '
 	    }).then(function (response) {
 	      // response from axios comes with data object and so does graphql
 	      dispatch(receiveWeather(response.data.data.weatherForecast));
@@ -28110,7 +28110,7 @@
 	WeatherList.propTypes = {
 	  clearWeather: _react.PropTypes.func,
 	  deleteCity: _react.PropTypes.func,
-	  weather: _react.PropTypes.object.isRequired
+	  cities: _react.PropTypes.object.isRequired
 	};
 	
 	function mapStateToProps(_ref) {
@@ -28118,7 +28118,6 @@
 	
 	  return {
 	    cities: weather.get('cities')
-	
 	  };
 	}
 	
@@ -28156,23 +28155,26 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var propTypes = {
-	  cityData: _react.PropTypes.object.isRequired,
+	  cityData: _react.PropTypes.shape({
+	    pressure_data: _react.PropTypes.arrayOf(_react.PropTypes.number),
+	    humidity_data: _react.PropTypes.arrayOf(_react.PropTypes.number),
+	    temp_f_data: _react.PropTypes.arrayOf(_react.PropTypes.number),
+	    temp_f_avg: _react.PropTypes.number,
+	    pressure_avg: _react.PropTypes.number,
+	    humidity_avg: _react.PropTypes.number
+	  }).isRequired,
 	  deleteCity: _react.PropTypes.func
 	};
 	
 	var WeatherListItem = function WeatherListItem(_ref) {
 	  var cityData = _ref.cityData;
 	  var deleteCity = _ref.deleteCity;
-	
-	  var temps = cityData.list.map(function (weather) {
-	    return weather.main.temp_f;
-	  });
-	  var pressures = cityData.list.map(function (weather) {
-	    return weather.main.pressure;
-	  });
-	  var humidities = cityData.list.map(function (weather) {
-	    return weather.main.humidity;
-	  });
+	  var pressure_data = cityData.pressure_data;
+	  var humidity_data = cityData.humidity_data;
+	  var temp_f_data = cityData.temp_f_data;
+	  var temp_f_avg = cityData.temp_f_avg;
+	  var pressure_avg = cityData.pressure_avg;
+	  var humidity_avg = cityData.humidity_avg;
 	  var _cityData$city$coord = cityData.city.coord;
 	  var lat = _cityData$city$coord.lat;
 	  var lng = _cityData$city$coord.lng;
@@ -28188,17 +28190,17 @@
 	    _react2.default.createElement(
 	      'td',
 	      null,
-	      _react2.default.createElement(_SparkLineChart2.default, { data: temps, color: 'red', units: '°F' })
+	      _react2.default.createElement(_SparkLineChart2.default, { data: temp_f_data, color: 'red', avgData: temp_f_avg, un: true, its: '°F' })
 	    ),
 	    _react2.default.createElement(
 	      'td',
 	      null,
-	      _react2.default.createElement(_SparkLineChart2.default, { data: pressures, color: 'blue', units: 'hPa' })
+	      _react2.default.createElement(_SparkLineChart2.default, { data: pressure_data, color: 'blue', avgData: pressure_avg, units: 'hPa' })
 	    ),
 	    _react2.default.createElement(
 	      'td',
 	      null,
-	      _react2.default.createElement(_SparkLineChart2.default, { data: humidities, color: 'orange', units: '%' })
+	      _react2.default.createElement(_SparkLineChart2.default, { data: humidity_data, color: 'orange', avgData: humidity_avg, units: '%' })
 	    ),
 	    _react2.default.createElement(
 	      'td',
@@ -28257,13 +28259,14 @@
 	  var data = _ref.data;
 	  var color = _ref.color;
 	  var units = _ref.units;
+	  var avgData = _ref.avgData;
 	
 	  return _react2.default.createElement(
 	    'div',
 	    null,
 	    _react2.default.createElement(
 	      _reactSparklines.Sparklines,
-	      { height: 120, width: 180, data: data },
+	      { height: 120, width: 180, data: data, avgData: avgData },
 	      _react2.default.createElement(_reactSparklines.SparklinesLine, { color: color }),
 	      _react2.default.createElement(_reactSparklines.SparklinesReferenceLine, { type: 'avg' })
 	    ),
@@ -28271,9 +28274,7 @@
 	      'div',
 	      null,
 	      'Avgerage: ',
-	      average(data),
-	      ' ',
-	      units
+	      avgData + ' ' + units
 	    )
 	  );
 	};

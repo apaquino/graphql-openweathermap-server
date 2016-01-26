@@ -37,26 +37,25 @@ export function fetchWeather(term) {
     dispatch(requestWeather(term));
     return axios.post('/graphql', {
               query: `
-              {
-                weatherForecast(city:"${term}") {
-                  city {
-                    id,
-                    name,
-                    coord{
-                      lat,
-                      lng: lon
-                    }
-                  },
-                  list {
-                    main {
-                      temp_f,
-                      pressure,
-                      humidity
-                    }
+                {
+                  weatherForecast(city:"${term}") {
+                    city {
+                      id,
+                      name,
+                      coord{
+                        lat,
+                        lng: lon
+                      }
+                    },
+                    pressure_data,
+                    humidity_data,
+                    temp_f_data,
+                    temp_f_avg,
+                    pressure_avg,
+                    humidity_avg,
                   }
                 }
-              }
-              `
+                `
             })
             .then( response => {
               // response from axios comes with data object and so does graphql

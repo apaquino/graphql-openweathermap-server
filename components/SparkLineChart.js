@@ -11,14 +11,14 @@ const propTypes = {
   units: PropTypes.string,
 };
 
-const SparkLineChart = ({data, color, units}) => {
+const SparkLineChart = ({data, color, units, avgData}) => {
     return (
       <div>
-        <Sparklines height={120} width={180} data={data} >
+        <Sparklines height={120} width={180} data={data} avgData={avgData} >
           <SparklinesLine color={color} />
           <SparklinesReferenceLine type="avg" />
         </Sparklines>
-        <div>Avgerage: {average(data)} {units}</div>
+        <div>Avgerage: {`${avgData} ${units}`}</div>
       </div>
     )
 }
