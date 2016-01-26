@@ -22,7 +22,9 @@ const WeatherListItem = ({cityData, deleteCity}) => {
     temp_f_data,
     temp_f_avg,
     pressure_avg,
-    humidity_avg } = cityData;
+    humidity_avg
+  } = cityData;
+  
   const { lat, lng } = cityData.city.coord;
 
   return (
