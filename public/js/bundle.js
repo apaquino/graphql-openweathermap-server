@@ -22577,6 +22577,9 @@
 	  var pressure_data = cityData.pressure_data;
 	  var humidity_data = cityData.humidity_data;
 	  var temp_f_data = cityData.temp_f_data;
+	  var temp_f_avg = cityData.temp_f_avg;
+	  var humidity_avg = cityData.humidity_avg;
+	  var pressure_avg = cityData.pressure_avg;
 	  var _cityData$city$coord = cityData.city.coord;
 	  var lat = _cityData$city$coord.lat;
 	  var lng = _cityData$city$coord.lng;
@@ -22592,28 +22595,26 @@
 	    _react2.default.createElement(
 	      'td',
 	      null,
-	      _react2.default.createElement(_SparkLineChart2.default, { data: temp_f_data, color: 'red', avgData: cityData.temp_f_avg, un: true, its: '°F' })
+	      _react2.default.createElement(_SparkLineChart2.default, { data: temp_f_data, color: 'red', avgData: temp_f_avg, un: true, its: '°F' })
 	    ),
 	    _react2.default.createElement(
 	      'td',
 	      null,
-	      _react2.default.createElement(_SparkLineChart2.default, { data: pressure_data, color: 'blue', avgData: cityData.pressure_avg, units: 'hPa' })
+	      _react2.default.createElement(_SparkLineChart2.default, { data: pressure_data, color: 'blue', avgData: pressure_avg, units: 'hPa' })
 	    ),
 	    _react2.default.createElement(
 	      'td',
 	      null,
-	      _react2.default.createElement(_SparkLineChart2.default, { data: humidity_data, color: 'orange', avgData: cityData.humidity_avg, units: '%' })
+	      _react2.default.createElement(_SparkLineChart2.default, { data: humidity_data, color: 'orange', avgData: humidity_avg, units: '%' })
 	    ),
 	    _react2.default.createElement(
 	      'td',
 	      null,
 	      _react2.default.createElement(
 	        'button',
-	        { className: 'btn btn-danger',
-	          onClick: function onClick() {
+	        { className: 'btn btn-danger', onClick: function onClick() {
 	            return deleteCity(cityData.city.id);
-	          }
-	        },
+	          } },
 	        'X'
 	      )
 	    )

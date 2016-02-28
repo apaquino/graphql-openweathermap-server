@@ -28,13 +28,22 @@ const WeatherListItem = ({cityData, deleteCity}) => {
 
   return (
     <tr>
-      <td className="googlemap"><GoogleCityMap lat={lat} lng={lng} /></td>
-      <td><SparkLineChart data={temp_f_data} color="red" avgData={temp_f_avg}un its="&deg;F" /></td>
-      <td><SparkLineChart data={pressure_data} color="blue" avgData={pressure_avg}units="hPa"/></td>
-      <td><SparkLineChart data={humidity_data} color="orange" avgData={humidity_avg} units="%"/></td>
-      <td><button className="btn btn-danger" onClick={() => deleteCity(cityData.city.id)}>
-            X
-          </button>
+      <td className="googlemap">
+        <GoogleCityMap lat={lat} lng={lng} />
+      </td>
+      <td>
+        <SparkLineChart data={temp_f_data} color="red" avgData={temp_f_avg}un its="&deg;F" />
+      </td>
+      <td>
+        <SparkLineChart data={pressure_data} color="blue" avgData={pressure_avg}units="hPa"/>
+      </td>
+      <td>
+        <SparkLineChart data={humidity_data} color="orange" avgData={humidity_avg} units="%"/>
+      </td>
+      <td>
+        <button className="btn btn-danger" onClick={() => deleteCity(cityData.city.id)}>
+          X
+        </button>
       </td>
     </tr>
   )
