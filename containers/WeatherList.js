@@ -13,6 +13,8 @@ class WeatherList extends Component {
 
   render() {
     const { weather, clearWeather, deleteCity } = this.props;
+    const hasCities = weather.cities.length > 0,
+          hasManyCities = weather.cities.length > 1;
 
     return (
       <div>
@@ -36,13 +38,13 @@ class WeatherList extends Component {
           })}
           </tbody>
         </table>
-        {weather.cities.length > 0 && (
+        {hasCities && (
           <button
             className="btn btn-warning"
             style={{float: 'right'}}
             onClick={() => clearWeather()}
           >
-            {weather.cities.length > 1 ? "Clear All" : "Clear"}
+            {hasManyCities ? "Clear All" : "Clear"}
           </button>
         )}
       </div>

@@ -22450,6 +22450,9 @@
 	      var clearWeather = _props.clearWeather;
 	      var deleteCity = _props.deleteCity;
 
+	      var hasCities = weather.cities.length > 0,
+	          hasManyCities = weather.cities.length > 1;
+
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -22497,7 +22500,7 @@
 	            })
 	          )
 	        ),
-	        weather.cities.length > 0 && _react2.default.createElement(
+	        hasCities && _react2.default.createElement(
 	          'button',
 	          {
 	            className: 'btn btn-warning',
@@ -22506,7 +22509,7 @@
 	              return clearWeather();
 	            }
 	          },
-	          weather.cities.length > 1 ? "Clear All" : "Clear"
+	          hasManyCities ? "Clear All" : "Clear"
 	        )
 	      );
 	    }
