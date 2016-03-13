@@ -1,14 +1,14 @@
-import {
-  GraphQLSchema,
-  GraphQLObjectType,
-  GraphQLInt,
-  GraphQLString,
-  GraphQLList,
-  GraphQLNonNull,
-  GraphQLID,
-  GraphQLBoolean,
-  GraphQLFloat
-} from 'graphql';
+import
+  { GraphQLSchema
+  , GraphQLObjectType
+  , GraphQLInt
+  , GraphQLString
+  , GraphQLList
+  , GraphQLNonNull
+  , GraphQLID
+  , GraphQLBoolean
+  , GraphQLFloat
+  } from 'graphql';
 
 import weatherForecastType from './weatherForecastType';
 import youtubeType from './youtubeType';
@@ -40,9 +40,9 @@ const query = new GraphQLObjectType({
       resolve: (_, {city}) => {
         const url = `http://api.openweathermap.org/data/2.5/forecast?q=${city},us&appid=${API_KEYS.weather}`;
         return axios.get(url)
-                .then(function(response) {
-                  return response.data;
-               });
+          .then(function(response) {
+            return response.data;
+          });
       }
     },
     youtube: {
@@ -55,14 +55,12 @@ const query = new GraphQLObjectType({
       },
       resolve: (_,{term}) => {
         return YTSearchPromisified(term)
-                 .then(data => data);
+          .then(data => data);
       },
     }
   }),
 });
 
-const schema = new GraphQLSchema({
-  query,
-});
+const schema = new GraphQLSchema({ query });
 
 export default schema;

@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
 import { GoogleMapLoader, GoogleMap } from "react-google-maps";
 
-const propTypes = {
-  lat: PropTypes.number.isRequired,
-  lng: PropTypes.number.isRequired,
-};
+const propTypes =
+  { lat: PropTypes.number.isRequired
+  , lng: PropTypes.number.isRequired
+  };
 
 const GoogleCityMap = ({lat, lng}) => {
   return (

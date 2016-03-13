@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react';
 import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines';
 
-const propTypes = {
-  data: PropTypes.array.isRequired,
-  color: PropTypes.string,
-  units: PropTypes.string,
-  avgData: PropTypes.number,
-};
+const propTypes =
+  { data: PropTypes.array.isRequired
+  , color: PropTypes.string
+  , units: PropTypes.string
+  , avgData: PropTypes.number
+  };
 
 const SparkLineChart = ({data, color, units, avgData}) => {
     return (

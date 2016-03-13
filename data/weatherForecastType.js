@@ -1,14 +1,14 @@
-import {
-  GraphQLSchema,
-  GraphQLObjectType,
-  GraphQLInt,
-  GraphQLString,
-  GraphQLList,
-  GraphQLNonNull,
-  GraphQLID,
-  GraphQLBoolean,
-  GraphQLFloat
-} from 'graphql';
+import
+  { GraphQLSchema
+  , GraphQLObjectType
+  , GraphQLInt
+  , GraphQLString
+  , GraphQLList
+  , GraphQLNonNull
+  , GraphQLID
+  , GraphQLBoolean
+  , GraphQLFloat
+  } from 'graphql';
 
 const weatherForecastType = new GraphQLObjectType({
   name: "WeatherForecast",

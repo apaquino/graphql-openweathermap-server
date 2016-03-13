@@ -21167,7 +21167,7 @@
 	  return function (dispatch) {
 	    dispatch(requestWeather(term));
 	    return _axios2.default.post('/graphql', {
-	      query: '\n              {\n                weatherForecast(city:"' + term + '") {\n                  city {\n                    id,\n                    name,\n                    coord{\n                      lat,\n                      lng: lon\n                    }\n                  },\n                  pressure_data,\n                  humidity_data,\n                  temp_f_data,\n                  temp_f_avg,\n                  pressure_avg,\n                  humidity_avg,\n                }\n              }\n              '
+	      query: '\n      {\n        weatherForecast(city:"' + term + '") {\n          city {\n            id,\n            name,\n            coord{\n              lat,\n              lng: lon\n            }\n          },\n          pressure_data,\n          humidity_data,\n          temp_f_data,\n          temp_f_avg,\n          pressure_avg,\n          humidity_avg,\n        }\n      }\n      '
 	    }).then(function (response) {
 	      // response from axios comes with data object and so does graphql
 	      dispatch(receiveWeather(response.data.data.weatherForecast));
@@ -22342,9 +22342,7 @@
 	      _this.setState({ term: "" });
 	    };
 
-	    _this.state = {
-	      term: ""
-	    };
+	    _this.state = { term: "" };
 	    return _this;
 	  }
 
@@ -22382,15 +22380,12 @@
 	  return SearchBar;
 	}(_react.Component);
 
-	SearchBar.propTypes = {
-	  fetchWeather: _react.PropTypes.func,
+	SearchBar.propTypes = { fetchWeather: _react.PropTypes.func,
 	  isLoading: _react.PropTypes.bool
 	};
 
 	function mapStateToProps(state) {
-	  return {
-	    isLoading: state.weather.isLoading
-	  };
+	  return { isLoading: state.weather.isLoading };
 	}
 
 	function mapDispatchToProps(dispatch) {
@@ -22518,8 +22513,7 @@
 	  return WeatherList;
 	}(_react.Component);
 
-	WeatherList.propTypes = {
-	  clearWeather: _react.PropTypes.func,
+	WeatherList.propTypes = { clearWeather: _react.PropTypes.func,
 	  deleteCity: _react.PropTypes.func,
 	  weather: _react.PropTypes.object.isRequired
 	};
@@ -22562,9 +22556,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var propTypes = {
-	  cityData: _react.PropTypes.shape({
-	    pressure_data: _react.PropTypes.arrayOf(_react.PropTypes.number),
+	var propTypes = { cityData: _react.PropTypes.shape({ pressure_data: _react.PropTypes.arrayOf(_react.PropTypes.number),
 	    humidity_data: _react.PropTypes.arrayOf(_react.PropTypes.number),
 	    temp_f_data: _react.PropTypes.arrayOf(_react.PropTypes.number),
 	    temp_f_avg: _react.PropTypes.number,
@@ -22646,8 +22638,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var propTypes = {
-	  data: _react.PropTypes.array.isRequired,
+	var propTypes = { data: _react.PropTypes.array.isRequired,
 	  color: _react.PropTypes.string,
 	  units: _react.PropTypes.string,
 	  avgData: _react.PropTypes.number
@@ -23393,8 +23384,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var propTypes = {
-	  lat: _react.PropTypes.number.isRequired,
+	var propTypes = { lat: _react.PropTypes.number.isRequired,
 	  lng: _react.PropTypes.number.isRequired
 	};
 

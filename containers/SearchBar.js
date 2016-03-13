@@ -6,15 +6,13 @@ import { fetchWeather } from '../actions/index';
 class SearchBar extends Component {
   constructor(props){
     super(props);
-    this.state = {
-      term: ""
-    };
+    this.state = { term: "" };
   }
-  
-  static propTypes = {
-    fetchWeather: PropTypes.func,
-    isLoading: PropTypes.bool
-  };
+
+  static propTypes =
+    { fetchWeather: PropTypes.func
+    , isLoading: PropTypes.bool
+    };
 
   onFormSubmit = (e) => {
     e.preventDefault();
@@ -42,9 +40,7 @@ class SearchBar extends Component {
 }
 
 function mapStateToProps(state) {
-  return {
-    isLoading: state.weather.isLoading
-  }
+  return { isLoading: state.weather.isLoading }
 }
 
 function mapDispatchToProps(dispatch) {

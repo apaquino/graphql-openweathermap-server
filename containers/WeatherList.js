@@ -5,11 +5,11 @@ import { clearWeather, deleteCity } from '../actions/index';
 import WeatherListItem from '../components/WeatherListItem';
 
 class WeatherList extends Component {
-  static propTypes = {
-    clearWeather: PropTypes.func,
-    deleteCity: PropTypes.func,
-    weather: PropTypes.object.isRequired,
-  };
+  static propTypes =
+    { clearWeather: PropTypes.func
+    , deleteCity: PropTypes.func
+    , weather: PropTypes.object.isRequired
+    };
 
   render() {
     const { weather, clearWeather, deleteCity } = this.props;
