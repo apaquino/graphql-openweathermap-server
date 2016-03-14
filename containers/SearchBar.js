@@ -6,7 +6,9 @@ import { fetchWeather } from '../actions/index';
 class SearchBar extends Component {
   constructor(props){
     super(props);
-    this.state = { term: "" };
+    this.state =
+      { term: ""
+      };
   }
 
   static propTypes =
@@ -17,7 +19,7 @@ class SearchBar extends Component {
   onFormSubmit = (e) => {
     e.preventDefault();
     this.props.fetchWeather(this.state.term);
-    this.setState({term: ""});
+    this.setState({ term: "" });
   }; // ";" required for class property
 
   render() {

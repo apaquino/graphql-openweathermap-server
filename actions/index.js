@@ -6,30 +6,26 @@ export const CLEAR_WEATHER = 'CLEAR_WEATHER';
 export const DELETE_CITY = 'DELETE_CITY';
 
 export function requestWeather(term) {
-  return {
-    type: REQUEST_WEATHER,
-    term
-  };
+  return  { type: REQUEST_WEATHER
+          ,term
+          };
 }
 
 export function receiveWeather(city) {
-  return {
-    type: RECEIVE_WEATHER,
-    city
-  };
+  return  { type: RECEIVE_WEATHER
+          , city
+          };
 }
 
 export function clearWeather() {
-  return {
-    type: CLEAR_WEATHER
-  };
+  return  { type: CLEAR_WEATHER
+          };
 }
 
 export function deleteCity(id) {
-  return {
-    type: DELETE_CITY,
-    id
-  };
+  return  { type: DELETE_CITY
+          , id
+          };
 }
 
 export function fetchWeather(term) {

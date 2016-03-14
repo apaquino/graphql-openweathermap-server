@@ -3,7 +3,7 @@ import SparkLineChart from './SparkLineChart';
 import GoogleCityMap from './GoogleCityMap';
 
 const propTypes =
-  {cityData: PropTypes.shape(
+  { cityData: PropTypes.shape(
     { pressure_data: PropTypes.arrayOf(PropTypes.number)
     , humidity_data: PropTypes.arrayOf(PropTypes.number)
     , temp_f_data: PropTypes.arrayOf(PropTypes.number)

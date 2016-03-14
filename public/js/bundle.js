@@ -21137,28 +21137,24 @@
 	var DELETE_CITY = exports.DELETE_CITY = 'DELETE_CITY';
 
 	function requestWeather(term) {
-	  return {
-	    type: REQUEST_WEATHER,
+	  return { type: REQUEST_WEATHER,
 	    term: term
 	  };
 	}
 
 	function receiveWeather(city) {
-	  return {
-	    type: RECEIVE_WEATHER,
+	  return { type: RECEIVE_WEATHER,
 	    city: city
 	  };
 	}
 
 	function clearWeather() {
-	  return {
-	    type: CLEAR_WEATHER
+	  return { type: CLEAR_WEATHER
 	  };
 	}
 
 	function deleteCity(id) {
-	  return {
-	    type: DELETE_CITY,
+	  return { type: DELETE_CITY,
 	    id: id
 	  };
 	}
@@ -22342,7 +22338,8 @@
 	      _this.setState({ term: "" });
 	    };
 
-	    _this.state = { term: "" };
+	    _this.state = { term: ""
+	    };
 	    return _this;
 	  }
 
